@@ -1,3 +1,5 @@
+
+*.class
 # Created by https://www.gitignore.io/api/eclipse,netbeans,java,maven,gradle,intellij
 
 ### Eclipse ###
@@ -138,3 +140,4 @@ atlassian-ide-plugin.xml
 com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
+*.class
