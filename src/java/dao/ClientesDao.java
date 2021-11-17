@@ -13,47 +13,48 @@ public class ClientesDao {
     Conexion conn = new Conexion();
     EmbarqueDao edao = new EmbarqueDao();
 
-    public Clientes insert(Clientes c) {
+    public boolean insert(Clientes c) {
         String sql = "INSERT INTO clientes values(?,?,?,?,?,?,?)";
         try {
             String[] generatedColumns = {"DNI"};
-            PreparedStatement ps = conn.conectar().prepareStatement(sql, generatedColumns);
-            ps.setInt(1, 1);
+            PreparedStatement ps = conn.conectar().prepareStatement(sql);
+            ps.setInt(1, c.getDni());
             ps.setInt(2, c.getTarjetaEmbarque().getTarjetaEmbarque());
             ps.setString(3, c.getNombre());
             ps.setString(4, c.getApellido());
             ps.setString(5, c.getDireccion());
             ps.setString(6, c.getTelefono());
             ps.setString(7, c.getTarjetaCredito());
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                c.setDni(rs.getInt(1));
-            }
-            return c;
+//            ResultSet rs = ps.getGeneratedKeys();
+//            if (rs.next()) {
+//                c.setDni(rs.getInt(1));
+//            }
+            ps.executeUpdate();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 
-    public Clientes update(Clientes c) {
-        String sql = "update clientes set tarjeta_embarque=?, nombre=?, apellido=?,direccion=?, telefono=?, tarjeta_credito=? where Cod_aeropuerto=?";
+    public boolean update(Clientes c) {
+        String sql = "update clientes set tarjeta_embarque=?, nombre=?, apellido=?,direccion=?, telefono=?, tarjeta_credito=? where DNI=?";
         try {
             String[] generatedColumns = {"DNI"};
-            PreparedStatement ps = conn.conectar().prepareStatement(sql, generatedColumns);
+            PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, c.getTarjetaEmbarque().getTarjetaEmbarque());
             ps.setString(2, c.getNombre());
             ps.setString(3, c.getApellido());
             ps.setString(4, c.getDireccion());
             ps.setString(5, c.getTelefono());
             ps.setString(6, c.getTarjetaCredito());
-            ps.setInt(6, c.getDni());
-            ResultSet rs = ps.getGeneratedKeys();
+            ps.setInt(7, c.getDni());
+
             ps.executeUpdate();
-            return c;
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 
@@ -66,7 +67,7 @@ public class ClientesDao {
             while (rs.next()) {
                 Clientes c = new Clientes();
                 c.setDni(rs.getInt("DNI"));
-                int tarjetaEmbarqueId = rs.getInt("tarjeta__embarque");
+                int tarjetaEmbarqueId = rs.getInt("tarjeta_embarque");
                 c.setTarjetaEmbarque(edao.findById(tarjetaEmbarqueId));
                 c.setNombre(rs.getString("nombre"));
                 c.setApellido(rs.getString("apellido"));
@@ -103,16 +104,17 @@ public class ClientesDao {
         }
         return c;
     }
-    public boolean delete(int id){
-    String sql= "delete from clientes where DNI=?";
+
+    public boolean delete(int id) {
+        String sql = "delete from clientes where DNI=?";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
-        e.printStackTrace();
-        return false;
+            e.printStackTrace();
+            return false;
         }
     }
 }

@@ -23,9 +23,26 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col s12">
-                    <jsp:include page='navbar.jsp'>
-                        <jsp:param name="name" value="Jorge"/>
-                    </jsp:include>
+                    <nav style="background-color: purple">
+                        <div class="nav-wrapper" >
+                            <a class="brand-logo">&nbsp; Reservas de Vuelos <i class="fas fa-paper-plane right"></i></a> 
+                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                            <ul class="right hide-on-med-and-down">
+                                <li><a href="/parcial2Vuelos/clientes?action=mostrar" >Clientes<i class="small material-icons left">group</i></a></li>
+                                <li><a href="/parcial2Vuelos/tarjeta?action=mostrar"><i class="fas fa-id-card left"></i>Tarjetas</a></li>
+                                <li class="active"><a href="/parcial2Vuelos/reserva?action=mostrar"><i class="small material-icons left">assignment_turned_in</i>Reserva de Vuelo de Clientes</a></li>
+                                <li><a href="modulo-aeropuerto/aeropuerto.jsp"><i class="fas fa-plane-departure left"></i>Aeropuertos</a></li>
+                                <li><a href="modulo-aviones/aviones.jsp"><i class="small material-icons left">airplanemode_active</i>Aviones</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                    <ul class="sidenav" id="mobile-demo">
+                                                   <li><a href="modulo-clientes/clientes.jsp" >Clientes<i class="small material-icons left">group</i></a></li>
+                                <li><a href="modulo-tarjeta/tarjeta.jsp"><i class="fas fa-id-card left"></i>Añadir Tarjeta</a></li>
+                                <li class="active"><a href="modulo-reserva/reserva.jsp"><i class="small material-icons left">assignment_turned_in</i>Reserva de vuelo de clientes</a></li>
+                                <li><a href="modulo-aeropuerto/aeropuerto.jsp"><i class="fas fa-plane-departure left"></i>Añadir Aeropuertos</a></li>
+                                <li><a href="modulo-aviones/aviones.jsp"><i class="small material-icons left">airplanemode_active</i>Añadir Aviones</a></li>
+                    </ul>
                     <div class="row">
                         <div class="col s12">
                             <img src="https://fondosmil.com/fondo/31181.png" class="responsive-img"   />

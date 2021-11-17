@@ -38,39 +38,10 @@
         </style>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col s12">
-                    <nav style="background-color: purple">
-                        <div class="nav-wrapper" >
-                            <a class="brand-logo">&nbsp; Reservas de Vuelos <i class="fas fa-paper-plane right"></i></a> 
-                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                            <ul class="right hide-on-med-and-down">
-                                <li><a href="../" >Index<i class="fas fa-location-arrow left"></i></a></li>
-                                <li><a href="../modulo-clientes/clientes.jsp" >Clientes<i class="small material-icons left">group</i></a></li>
-                                <li><a href="tarjeta.jsp" >Tarjeta<i class="fas fa-id-card left"></i></a></li>                           
-                                <li class="active"><a href="../modulo-reserva/reserva.jsp"><i class="small material-icons left">assignment_turned_in</i>Reserva de vuelo de clientes</a></li>
-                                <li><a href="../modulo-aeropuerto/aeropuerto.jsp"><i class="fas fa-plane-departure left"></i>Añadir Aeropuertos</a></li>
-                                <li><a href="../modulo-aviones/aviones.jsp"><i class="small material-icons left">airplanemode_active</i>Añadir Aviones</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                    <ul class="sidenav" id="mobile-demo">
-                       <li><a href="../" >Index<i class="fas fa-location-arrow left"></i></a></li>
-                                <li><a href="../modulo-clientes/clientes.jsp" >Clientes<i class="small material-icons left">group</i></a></li>
-                                <li><a href="tarjeta.jsp" >Tarjeta<i class="fas fa-id-card left"></i></a></li>                           
-                                <li class="active"><a href="../modulo-reserva/reserva.jsp"><i class="small material-icons left">assignment_turned_in</i>Reserva de vuelo de clientes</a></li>
-                                <li><a href="../modulo-aeropuerto/aeropuerto.jsp"><i class="fas fa-plane-departure left"></i>Añadir Aeropuertos</a></li>
-                                <li><a href="../modulo-aviones/aviones.jsp"><i class="small material-icons left">airplanemode_active</i>Añadir Aviones</a></li>
-                    </ul>                 
-                </div>
-            </div>
-        </div><br> 
+        <jsp:include page='../navbar.jsp'/>
 
-
-
-    
         <div class="container"> 
+            <h3>Agregar Tarjeta</h3>
             <form action="/parcial2Vuelos/tarjeta?action=insertar" method="POST">
                 <div class="col s12 m6 l6">
                     <div class="row">
@@ -90,16 +61,16 @@
                         </div>
                     </div> 
 
-                  <button type="submit" class="waves-effect waves-light btn"><i class="fas fa-user-plus left"></i>Agregar</button>
+                    <button type="submit" class="waves-effect waves-light btn"><i class="fas fa-user-plus left"></i>Agregar</button>
 
 
 
-        </div> 
+                </div> 
             </form>
 
-    </div> 
-    <script src="../js/materialize.js" type="text/javascript"></script>
-  
-    <script src="https://kit.fontawesome.com/cc794b3cc5.js" crossorigin="anonymous"></script>
-</body>
+        </div> 
+        <script src="../js/materialize.js" type="text/javascript"></script>
+
+        <script src="https://kit.fontawesome.com/cc794b3cc5.js" crossorigin="anonymous"></script>
+    </body>
 </html>

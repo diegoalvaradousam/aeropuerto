@@ -18,25 +18,27 @@ import model.Embarque;
  * @author jorgi
  */
 public class EmbarqueDao {
+
     Conexion conn = new Conexion();
 
-    public Embarque insert(Embarque e) {
+    public boolean insert(Embarque e) {
         String sql = "INSERT INTO embarque values(?,?,?,?)";
         try {
             String[] generatedColumns = {"tarjeta_embarque"};
-            PreparedStatement ps = conn.conectar().prepareStatement(sql, generatedColumns);
-            ps.setInt(1, 1);
+            PreparedStatement ps = conn.conectar().prepareStatement(sql);
+            ps.setInt(1, 0);
             ps.setInt(2, e.getAsiento());
             ps.setString(3, e.getColumna());
             ps.setInt(4, e.getPlanta());
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                e.setTarjetaEmbarque(rs.getInt(1));
-            }
-            return e;
+//            ResultSet rs = ps.getGeneratedKeys();
+//            if (rs.next()) {
+//                e.setTarjetaEmbarque(rs.getInt(1));
+//            }
+            ps.executeUpdate();
+            return true;
         } catch (Exception ex) {
             ex.printStackTrace();
-            return null;
+            return false;
         }
     }
 
@@ -94,16 +96,17 @@ public class EmbarqueDao {
         }
         return a;
     }
-        public boolean delete(int id){
-    String sql= "delete from embarque where tarjeta_embarque=?";
+
+    public boolean delete(int id) {
+        String sql = "delete from embarque where tarjeta_embarque=?";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, id);
             ps.executeUpdate();
             return true;
         } catch (Exception e) {
-        e.printStackTrace();
-        return false;
+            e.printStackTrace();
+            return false;
         }
     }
 }

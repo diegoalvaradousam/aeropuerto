@@ -1,10 +1,13 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package controller;
 
 import Conexion.Conexion;
-
 import dao.EmbarqueDao;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -14,6 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Embarque;
 
+/**
+ *
+ * @author jorgi
+ */
 public class TarjetaServlet extends HttpServlet {
 
     String msg;
@@ -35,7 +42,7 @@ public class TarjetaServlet extends HttpServlet {
                 findAll(request, response);
                 break;
             case "mostrarById":
-                findAll(request, response);
+                findById(request, response);
                 break;
 
             case "actualizar":
@@ -59,7 +66,7 @@ public class TarjetaServlet extends HttpServlet {
         embarque.setColumna(columna);
         embarque.setPlanta(planta);
         
-        if (embarqued.insert(embarque) != null) {
+        if (embarqued.insert(embarque)) {
             msg = "Tarjeta de embarque Guardado Exitosamente";
         } else {
             msg = "No se Pudo Guardar La Tarjeta";
@@ -86,7 +93,7 @@ public class TarjetaServlet extends HttpServlet {
         lista = new ArrayList<>();
         lista.add(eb);
         request.setAttribute("lista", lista);
-        rd = request.getRequestDispatcher("/modulo-tarjeta/tarjeta.jsp");
+        rd = request.getRequestDispatcher("/modulo-tarjeta/actualizar-tarjeta.jsp");
         rd.forward(request, response);
     }
 
@@ -103,7 +110,7 @@ public class TarjetaServlet extends HttpServlet {
         embarque.setPlanta(planta);
         
         
-        if (embarqued.insert(embarque) != null) {
+        if (embarqued.insert(embarque)) {
             msg = "Se Guardo Exitosamente";
         } else {
             msg = "No se Pudo Guardar";
@@ -117,7 +124,7 @@ public class TarjetaServlet extends HttpServlet {
 
     protected void delete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int tarjeta_embarque = Integer.parseInt(request.getParameter("tarjeta_embarque"));
+        int tarjeta_embarque = Integer.parseInt(request.getParameter("id"));
         respuesta = embarqued.delete(tarjeta_embarque);
         if (respuesta) {
             msg = "La Tarjeta se Borro Exitosamente";
@@ -127,7 +134,7 @@ public class TarjetaServlet extends HttpServlet {
         lista = embarqued.findAll();
         request.setAttribute("msg", msg);
         request.setAttribute("lista", lista);
-        rd = request.getRequestDispatcher("/modulo-tarjeta/tarjeta.jsp");
+        rd = request.getRequestDispatcher("/tarjeta?action=mostrar");
         rd.forward(request, response);
 
         
@@ -149,5 +156,4 @@ public class TarjetaServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-
 }

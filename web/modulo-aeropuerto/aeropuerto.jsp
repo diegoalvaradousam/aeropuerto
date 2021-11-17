@@ -37,36 +37,14 @@
         </style>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col s12">
-                    <nav style="background-color: purple">
-                        <div class="nav-wrapper" >
-                            <a class="brand-logo">&nbsp; Reservas de Vuelos <i class="fas fa-paper-plane right"></i></a> 
-                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                            <ul class="right hide-on-med-and-down">
-                                <li><a href="../" >Index<i class="fas fa-location-arrow left"></i></a></li>
-                                <li><a href="../modulo-clientes/clientes.jsp" >Clientes<i class="small material-icons left">group</i></a></li>
-                                <li><a href="../modulo-tarjeta/tarjeta.jsp"><i class="fas fa-id-card left"></i>Añadir Tarjeta</a></li>                              
-                                <li class="active"><a href="../modulo-reserva/reserva.jsp"><i class="small material-icons left">assignment_turned_in</i>Reserva de vuelo de clientes</a></li>
-                                <li><a href="agregar-aeropuerto.jsp"><i class="fas fa-plus left"></i><i class="fas fa-plane-departure left"></i>Añadir Aeropuertos</a></li>
-                                <li><a href="../modulo-aviones/aviones.jsp"><i class="small material-icons left">airplanemode_active</i>Añadir Aviones</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                    <ul class="sidenav" id="mobile-demo">
-                        <li><a href="modulo-clientes/clientes.jsp" >Clientes<i class="small material-icons left">group</i></a></li>
-                        <li><a href="../modulo-tarjeta/tarjeta.jsp"><i class="fas fa-id-card left"></i>Añadir Tarjeta</a></li>                              
-                        <li class="active"><a href="../modulo-reserva/reserva.jsp"><i class="small material-icons left">assignment_turned_in</i>Reserva de vuelo de clientes</a></li>
-                        <li><a href="../modulo-aeropuerto/aeropuerto.jsp"><i class="fas fa-plane-departure left"></i>Añadir Aeropuertos</a></li>
-                        <li><a href="../modulo-aviones/aviones.jsp"><i class="small material-icons left">airplanemode_active</i>Añadir Aviones</a></li>
-                    </ul>                 
-                </div>
-            </div>
-        </div><br> 
+            <jsp:include page='../navbar.jsp'/>
 
         <div class="container service" >
 
+            <div class="row">
+                <br>
+                <a class="waves-effect waves-light btn" href="${pageContext.request.contextPath}/modulo-aeropuerto/agregar-aeropuerto.jsp">Agregar Aeropuerto</a>
+<br><br>
             <div class="row">
                 <c:forEach items="${lista}" var="ver">
                     <div class="col s12 m6 l3 center-align">

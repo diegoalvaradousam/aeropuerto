@@ -18,30 +18,31 @@ public class ReservaVueloDao {
     ClientesDao cdao = new ClientesDao();
     AvionesDao avdao = new AvionesDao();
 
-    public ReservaVuelo insert(ReservaVuelo r) {
+    public boolean insert(ReservaVuelo r) {
         String sql = "INSERT INTO reserva_vuelo values(?,?,?,?,?,?,?)";
         try {
             String[] generatedColumns = {"Cod_reserva"};
-            PreparedStatement ps = conn.conectar().prepareStatement(sql, generatedColumns);
-            ps.setInt(1, 1);
+            PreparedStatement ps = conn.conectar().prepareStatement(sql);
+            ps.setInt(1, 0);
             ps.setDate(2, Date.valueOf(r.getFechaSalida()));
             ps.setDate(3, Date.valueOf(r.getFechaLlegada()));
             ps.setInt(4, r.getAeropuertoLlegada().getCodArepuerto());
             ps.setInt(5, r.getAeropuertoSalida().getCodArepuerto());
             ps.setInt(6, r.getDniCliente().getDni());
             ps.setInt(7, r.getCodAvion().getCodAvion());
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                r.setCodReserva(rs.getInt(1));
-            }
-            return r;
+            ps.executeUpdate();
+//            if (rs.next()) {
+//                r.setCodReserva(rs.getInt(1));
+//                System.out.println("INTTTTT: "+rs.getInt(1));
+//            }
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 
-    public ReservaVuelo update(ReservaVuelo r) {
+    public boolean update(ReservaVuelo r) {
         String sql = "update reserva_vuelo set fehca_salida=?, fecha_llegada=?, aeropuerto_llegada=?, DNI_cliente=?, cod_avion=? where Cod_reserva=?";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
@@ -52,14 +53,11 @@ public class ReservaVueloDao {
             ps.setInt(5, r.getDniCliente().getDni());
             ps.setInt(6, r.getCodAvion().getCodAvion());
             ps.setInt(7, r.getCodReserva());
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                r.setCodReserva(rs.getInt(1));
-            }
-            return r;
+            ps.executeUpdate();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 
