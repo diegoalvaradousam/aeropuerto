@@ -29,6 +29,10 @@
                 <ul id="nav-mobile" class="left">
                     <li><a href="#" id="itemMenu"><i class="material-icons">menu</i></a></li>
                 </ul>
+                   <ul id="nav-mobile" class="right">
+                    <li><a href="#" id="itemMenu">NOMBRE</a></li>
+                    <li><a href="#" id="itemMenu">Cerrar Sesion</a></li>
+                </ul>
             </div>
         </nav>
         <ul id="slide-out" class="sidenav">
@@ -41,7 +45,7 @@
                     <!--<a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>-->
                 </div></li>
                 <li><a href="${pageContext.request.contextPath}/clientes?action=mostrar">Clientes</a></li>            
-                <li><a href="${pageContext.request.contextPath}/tarjeta?action=mostrar">Tarjetas</a></li>            
+                <li><a href="${pageContext.request.contextPath}/tarjeta?action=mostrar">Tarjeta de embarque</a></li>            
                 <li><a href="${pageContext.request.contextPath}/reserva?action=mostrar">Reservas de vuelo</a></li>            
                 <li><a href="${pageContext.request.contextPath}/aeropuerto?action=mostrar">Aeropuertos</a></li>            
                 <li><a href="${pageContext.request.contextPath}/aviones?action=mostrar">Aviones</a></li>            
