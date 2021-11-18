@@ -48,7 +48,7 @@ if(session.getAttribute("usuario")!= null){
                 </ul>
                    <ul id="nav-mobile" class="right">
                     <li><a href="#" id="itemMenu">NOMBRE</a></li>
-                    <li><a href="clientes?action=logout" id="itemMenu">Cerrar Sesion</a></li>
+                    <li><a href="${pageContext.request.contextPath}/clientes?action=logout" id="itemMenu">Cerrar Sesion</a></li>
                 </ul>
             </div>
         </nav>
