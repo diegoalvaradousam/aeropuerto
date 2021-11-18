@@ -53,7 +53,7 @@
                             <div class="card-image">
                                 <img src="./imagen/reserva.png">
                                 <span class="card-title">Reserva de Vuelo</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                                <!--<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>-->
                             </div>
                             <div class="card-content">
                                 <tr>
@@ -65,6 +65,7 @@
                                 <td>DNI del Cliente <br >${ver.dniCliente.nombre}</td><br>  
                                 <td>Codigo del Avion: <br >${ver.codAvion.codAvion}</td><br>  
                                 </tr>
+                                <a href="${pageContext.request.contextPath}/reserva?action=borrar&id=${ver.codReserva}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
 
                             </div>
                         </div>

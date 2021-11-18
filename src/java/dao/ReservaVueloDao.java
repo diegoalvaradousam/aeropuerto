@@ -26,8 +26,8 @@ public class ReservaVueloDao {
             ps.setInt(1, 0);
             ps.setDate(2, Date.valueOf(r.getFechaSalida()));
             ps.setDate(3, Date.valueOf(r.getFechaLlegada()));
-            ps.setInt(4, r.getAeropuertoLlegada().getCodArepuerto());
-            ps.setInt(5, r.getAeropuertoSalida().getCodArepuerto());
+            ps.setInt(4, r.getAeropuertoLlegada().getCodAeropuerto());
+            ps.setInt(5, r.getAeropuertoSalida().getCodAeropuerto());
             ps.setInt(6, r.getDniCliente().getDni());
             ps.setInt(7, r.getCodAvion().getCodAvion());
             ps.executeUpdate();
@@ -48,8 +48,8 @@ public class ReservaVueloDao {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setDate(1, Date.valueOf(r.getFechaSalida()));
             ps.setDate(2, Date.valueOf(r.getFechaLlegada()));
-            ps.setInt(3, r.getAeropuertoLlegada().getCodArepuerto());
-            ps.setInt(4, r.getAeropuertoSalida().getCodArepuerto());
+            ps.setInt(3, r.getAeropuertoLlegada().getCodAeropuerto());
+            ps.setInt(4, r.getAeropuertoSalida().getCodAeropuerto());
             ps.setInt(5, r.getDniCliente().getDni());
             ps.setInt(6, r.getCodAvion().getCodAvion());
             ps.setInt(7, r.getCodReserva());

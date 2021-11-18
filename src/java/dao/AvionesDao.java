@@ -20,7 +20,7 @@ public class AvionesDao {
             PreparedStatement ps = conn.conectar().prepareStatement(sql, generatedColumns);
             ps.setInt(1, 1);
             ps.setInt(2, a.getNum_plazas());
-            ps.setInt(3, a.getCod_aeropuerto().getCodArepuerto());
+            ps.setInt(3, a.getCod_aeropuerto().getCodAeropuerto());
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 a.setCodAvion(rs.getInt(1));
@@ -37,7 +37,7 @@ public class AvionesDao {
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, a.getNum_plazas());
-            ps.setInt(2, a.getCod_aeropuerto().getCodArepuerto());
+            ps.setInt(2, a.getCod_aeropuerto().getCodAeropuerto());
             ps.setInt(3, a.getCodAvion());
             ps.executeUpdate();
             return a;

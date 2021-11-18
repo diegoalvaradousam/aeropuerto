@@ -70,7 +70,7 @@
                             </div>
                             <div class="input-field col s6">                     
                                 <label for="tarjeta_credito">Tarjeta de Credito <i class="fa-lg fas fa-credit-card"></i></label>
-                                <input type="number" id="tarjeta_credito" class="autocomplete" name="tarjeta_credito" value="${ver.tarjetaCredito}"> 
+                                <input type="number" id="tarjeta_credito" class="autocomplete" name="tarjeta_credito" value="${ver.tarjetaCredito}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="11"> 
                             </div>
                         </div> 
                         <button type="submit" class="waves-effect waves-light btn"><i class="fas fa-user-plus left"></i>Actualizar</button>

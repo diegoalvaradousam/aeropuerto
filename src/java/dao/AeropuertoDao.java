@@ -11,39 +11,36 @@ public class AeropuertoDao {
 
     Conexion conn = new Conexion();
 
-    public Aeropuerto insert(Aeropuerto a) {
+    public boolean insert(Aeropuerto a) {
         String sql = "INSERT INTO aeropuerto values(?,?,?,?)";
         try {
             String[] generatedColumns = {"Cod_aeropuerto"};
-            PreparedStatement ps = conn.conectar().prepareStatement(sql, generatedColumns);
-            ps.setInt(1, 1);
-            ps.setString(2, a.getNombreAerpuerto());
+            PreparedStatement ps = conn.conectar().prepareStatement(sql);
+            ps.setInt(1, 0);
+            ps.setString(2, a.getNombreAeropuerto());
             ps.setString(3, a.getLocalidad());
             ps.setString(4, a.getPais());
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                a.setCodArepuerto(rs.getInt(1));
-            }
-            return a;
+            ps.executeUpdate();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 
-    public Aeropuerto update(Aeropuerto a) {
+    public boolean update(Aeropuerto a) {
         String sql = "update aeropuerto set nombre_aeropuerto=?, localidad=?, pais=? where Cod_aeropuerto=?";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
-            ps.setString(1, a.getNombreAerpuerto());
+            ps.setString(1, a.getNombreAeropuerto());
             ps.setString(2, a.getLocalidad());
             ps.setString(3, a.getPais());
-            ps.setInt(4, a.getCodArepuerto());
+            ps.setInt(4, a.getCodAeropuerto());
             ps.executeUpdate();
-            return a;
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 
@@ -55,8 +52,8 @@ public class AeropuertoDao {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Aeropuerto a = new Aeropuerto();
-                a.setCodArepuerto(rs.getInt("Cod_aeropuerto"));
-                a.setNombreAerpuerto(rs.getString("nombre_aeropuerto"));
+                a.setCodAeropuerto(rs.getInt("Cod_aeropuerto"));
+                a.setNombreAeropuerto(rs.getString("nombre_aeropuerto"));
                 a.setLocalidad(rs.getString("localidad"));
                 a.setPais(rs.getString("pais"));
                 aeroList.add(a);
@@ -76,8 +73,8 @@ public class AeropuertoDao {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
 
-                a.setCodArepuerto(rs.getInt("Cod_aeropuerto"));
-                a.setNombreAerpuerto(rs.getString("nombre_aeropuerto"));
+                a.setCodAeropuerto(rs.getInt("Cod_aeropuerto"));
+                a.setNombreAeropuerto(rs.getString("nombre_aeropuerto"));
                 a.setLocalidad(rs.getString("localidad"));
                 a.setPais(rs.getString("pais"));
             }

@@ -41,44 +41,41 @@
         <jsp:include page='../navbar.jsp'/>
         <br>     
         <div class="container"> 
-            <form action="usuario?action=insertar" method="POST">
+            <form action="${pageContext.request.contextPath}/aeropuerto?action=insertar" method="POST">
                 <div class="col s12 m6 l6">
                     <div class="row">
+<!--                        <div class="input-field col s6">                     
+                            <label for="codAeropuerto">Codigo del Aeropuerto <i class="fa-lg fas fa-code"></i></label>
+                            <input type="text" id="codAeropuerto" class="autocomplete" name="codAeropuerto" value=""> 
+                        </div>-->
                         <div class="input-field col s6">                     
-                            <label for="autocomplete-input">Codigo del Aeropuerto <i class="fa-lg fas fa-code"></i></label>
-                            <input type="text" id="autocomplete-input" class="autocomplete" name="Cod_aeropuerto" value=""> 
-                        </div>
-                        <div class="input-field col s6">                     
-                            <label for="autocomplete-input">Nombre del Aeropuerto <i class="fa-lg fas fa-signature"></i></label>
-                            <input type="text" id="autocomplete-input" class="autocomplete" name="nombre_aeropuerto" value=""> 
+                            <label for="nombreAeropuerto">Nombre del Aeropuerto <i class="fa-lg fas fa-signature"></i></label>
+                            <input type="text" id="nombreAeropuerto" class="autocomplete" name="nombreAeropuerto" value=""> 
                         </div>
                     </div>   
                     <div class="row">
                         <div class="input-field col s6">                     
-                            <label for="autocomplete-input">Localidad del Aeropuerto <i class="fa-lg fas fa-map-marker-alt"></i></label>
-                            <input type="text" id="autocomplete-input" class="autocomplete" name="localidad" value=""> 
+                            <label for="localidad">Localidad del Aeropuerto <i class="fa-lg fas fa-map-marker-alt"></i></label>
+                            <input type="text" id="localidad" class="autocomplete" name="localidad" value=""> 
                         </div>
                         <div class="input-field col s6">                     
-                            <label for="autocomplete-input">Pais del Aeropuerto <i class="fa-lg fas fa-flag"></i></label>
-                            <input type="text" id="autocomplete-input" class="autocomplete" name="pais" value=""> 
+                            <label for="pais">Pais del Aeropuerto <i class="fa-lg fas fa-flag"></i></label>
+                            <input type="text" id="pais" class="autocomplete" name="pais" value=""> 
                         </div>
                     </div> 
 
                     <button type="submit" class="waves-effect waves-light btn"><i class="fas fa-user-plus left"></i>Agregar</button>
-
+                </div> 
             </form>
 
         </div> 
+        <script src="../js/materialize.js" type="text/javascript"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                M.AutoInit();
+            });
 
-
-    </div> 
-    <script src="../js/materialize.js" type="text/javascript"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            M.AutoInit();
-        });
-
-    </script>
-    <script src="https://kit.fontawesome.com/cc794b3cc5.js" crossorigin="anonymous"></script>
-</body>
+        </script>
+        <script src="https://kit.fontawesome.com/cc794b3cc5.js" crossorigin="anonymous"></script>
+    </body>
 </html>

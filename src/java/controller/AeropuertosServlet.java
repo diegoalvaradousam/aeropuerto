@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,20 +25,20 @@ import model.Aeropuerto;
 import model.Aviones;
 import model.Clientes;
 import model.Embarque;
-import model.ReservaVuelo;
 
 /**
  *
  * @author jorgi
  */
-public class ClientesServlet extends HttpServlet {
+@WebServlet(name = "AeropuertosServlet", urlPatterns = {"/aeropuerto"})
+public class AeropuertosServlet extends HttpServlet {
 
     String msg;
     boolean respuesta;
     Conexion conn = new Conexion();
     ReservaVueloDao reservad = new ReservaVueloDao();
     RequestDispatcher rd;
-    List<Clientes> lista = new ArrayList<>();
+    List<Aeropuerto> lista = new ArrayList<>();
     AeropuertoDao adao = new AeropuertoDao();
     ClientesDao cdao = new ClientesDao();
     AvionesDao avdao = new AvionesDao();
@@ -82,27 +83,17 @@ public class ClientesServlet extends HttpServlet {
 
     protected void insert(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int dni= Integer.parseInt(request.getParameter("DNI"));
-        int tarjetaEmbarque = Integer.parseInt(request.getParameter("tarjeta_embarque"));
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String direccion = request.getParameter("direccion");
-        String telefono = request.getParameter("telefono");
-        String tarjeta_credito = request.getParameter("tarjeta_credito");
-        
-        Clientes c= new Clientes();
-        c.setDni(dni);
-        
-        Embarque em= new  Embarque();
-        em.setTarjetaEmbarque(tarjetaEmbarque);
-        c.setTarjetaEmbarque(em);
-        
-        c.setNombre(nombre);
-        c.setApellido(apellido);
-        c.setDireccion(direccion);
-        c.setTelefono(telefono);
-        c.setTarjetaCredito(tarjeta_credito);
-        if (cdao.insert(c)) {
+        //int codAeropuerto= Integer.parseInt(request.getParameter("codAeropuerto"));
+        String nombre = request.getParameter("nombreAeropuerto");
+        String localidad = request.getParameter("localidad");
+        String pais = request.getParameter("pais");
+
+        Aeropuerto a = new Aeropuerto();
+        //a.setCodArepuerto(codAeropuerto);
+        a.setNombreAeropuerto(nombre);
+        a.setLocalidad(localidad);
+        a.setPais(pais);
+        if (adao.insert(a)) {
             System.out.println("Si inserta");
             msg = "Reserva Guardada Exitosamente";
         } else {
@@ -110,56 +101,46 @@ public class ClientesServlet extends HttpServlet {
             msg = "No se Pudo Guardar La Reserva";
         }
         request.setAttribute("msg", msg);
-        rd = request.getRequestDispatcher("/clientes?action=mostrar");
+        rd = request.getRequestDispatcher("/aeropuerto?action=mostrar");
         rd.forward(request, response);
 
     }
 
     protected void findAll(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        lista = cdao.findAll();
+        lista = adao.findAll();
         System.out.println("SIZEEEE: " + lista.size());
         request.setAttribute("lista", lista);
-        rd = request.getRequestDispatcher("/modulo-clientes/clientes.jsp");
+        rd = request.getRequestDispatcher("/modulo-aeropuerto/aeropuerto.jsp");
         rd.forward(request, response);
     }
 
     protected void findById(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int id = Integer.valueOf(request.getParameter("id"));
-        Clientes rv = cdao.findById(id);
+        Aeropuerto rv = adao.findById(id);
         lista = new ArrayList<>();
         lista.add(rv);
-        System.out.println("FIND BY UID CLIENTE: "+lista.size());
+        System.out.println("FIND BY UID AEROPUERTO: " + lista.size());
         request.setAttribute("lista", lista);
-        rd = request.getRequestDispatcher("/modulo-clientes/edit-clientes.jsp");
+        rd = request.getRequestDispatcher("/modulo-aeropuerto/editar-aeropuerto.jsp");
         rd.forward(request, response);
     }
 
     protected void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-      int dni= Integer.parseInt(request.getParameter("DNI"));
-        int tarjetaEmbarque = Integer.parseInt(request.getParameter("tarjeta_embarque"));
-        String nombre = request.getParameter("nombre");
-        String apellido = request.getParameter("apellido");
-        String direccion = request.getParameter("direccion");
-        String telefono = request.getParameter("telefono");
-        String tarjeta_credito = request.getParameter("tarjeta_credito");
-        
-        Clientes c= new Clientes();
-        c.setDni(dni);
-        
-        Embarque em= new  Embarque();
-        em.setTarjetaEmbarque(tarjetaEmbarque);
-        c.setTarjetaEmbarque(em);
-        
-        c.setNombre(nombre);
-        c.setApellido(apellido);
-        c.setDireccion(direccion);
-        c.setTelefono(telefono);
-        c.setTarjetaCredito(tarjeta_credito);
-        if (cdao.update(c)) {
+        int codAeropuerto = Integer.parseInt(request.getParameter("codAeropuerto"));
+        String nombre = request.getParameter("nombreAeropuerto");
+        String localidad = request.getParameter("localidad");
+        String pais = request.getParameter("pais");
+
+        Aeropuerto a = new Aeropuerto();
+        a.setCodAeropuerto(codAeropuerto);
+        a.setNombreAeropuerto(nombre);
+        a.setLocalidad(localidad);
+        a.setPais(pais);
+        if (adao.update(a)) {
             System.out.println("Si inserta");
             msg = "Reserva Guardada Exitosamente";
         } else {
@@ -167,25 +148,24 @@ public class ClientesServlet extends HttpServlet {
             msg = "No se Pudo Guardar La Reserva";
         }
         request.setAttribute("msg", msg);
-        rd = request.getRequestDispatcher("/clientes?action=mostrar");
+        rd = request.getRequestDispatcher("/aeropuerto?action=mostrar");
         rd.forward(request, response);
-
 
     }
 
     protected void delete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int Cod_reserva = Integer.parseInt(request.getParameter("id"));
-        respuesta = cdao.delete(Cod_reserva);
+        int id = Integer.parseInt(request.getParameter("id"));
+        respuesta = adao.delete(id);
         if (respuesta) {
             msg = "La Reserva se Borro Exitosamente";
         } else {
             msg = "No se Pudo Borrar La Reserva";
         }
-        lista = cdao.findAll();
+        lista = adao.findAll();
         request.setAttribute("msg", msg);
         request.setAttribute("lista", lista);
-        rd = request.getRequestDispatcher("/clientes?action=mostrar");
+        rd = request.getRequestDispatcher("/aeropuerto?action=mostrar");
         rd.forward(request, response);
     }
 

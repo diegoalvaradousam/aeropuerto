@@ -2,34 +2,34 @@ package model;
 
 public class Aeropuerto {
 
-    private Integer codArepuerto;
-    private String nombreAerpuerto;
+    private Integer codAeropuerto;
+    private String nombreAeropuerto;
     private String localidad;
     private String pais;
     public Aeropuerto() {
     }
 
     public Aeropuerto(Integer codArepuerto, String nombreAerpuerto, String localidad, String pais) {
-        this.codArepuerto = codArepuerto;
-        this.nombreAerpuerto = nombreAerpuerto;
+        this.codAeropuerto = codArepuerto;
+        this.nombreAeropuerto = nombreAerpuerto;
         this.localidad = localidad;
         this.pais = pais;
     }
 
-    public Integer getCodArepuerto() {
-        return codArepuerto;
+    public Integer getCodAeropuerto() {
+        return codAeropuerto;
     }
 
-    public void setCodArepuerto(Integer codArepuerto) {
-        this.codArepuerto = codArepuerto;
+    public void setCodAeropuerto(Integer codArepuerto) {
+        this.codAeropuerto = codArepuerto;
     }
 
-    public String getNombreAerpuerto() {
-        return nombreAerpuerto;
+    public String getNombreAeropuerto() {
+        return nombreAeropuerto;
     }
 
-    public void setNombreAerpuerto(String nombreAerpuerto) {
-        this.nombreAerpuerto = nombreAerpuerto;
+    public void setNombreAeropuerto(String nombreAerpuerto) {
+        this.nombreAeropuerto = nombreAerpuerto;
     }
 
     public String getLocalidad() {

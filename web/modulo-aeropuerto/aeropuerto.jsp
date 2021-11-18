@@ -11,6 +11,8 @@
         <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
         <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+                <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
         <title>JSP Page</title>
         <style>
             .body {
@@ -50,19 +52,20 @@
                     <div class="col s12 m6 l3 center-align">
                         <div class="card">
                             <div class="card-image">
-                                <img src="../imagen/airport.png">
+                                <img src="${pageContext.request.contextPath}/imagen/airport.png">
                                 <span class="card-title">Aeropuertos Disponibles</span>
-                                <a href="actualizar-aeropuerto.jsp" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                                <a href="${pageContext.request.contextPath}/aeropuerto?action=mostrarById&id=${ver.codAeropuerto}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                             </div>
                             <div class="card-content">
 
                                 <tr>
-                                    <td>Codigo del Aeropuerto: <br >   ${ver.Cod_aeropuerto}</td><br >    
-                                <td>Nombre del Aeropuerto: <br > ${ver.nombre_aeropuerto}</td><br>  
+                                    <td>Codigo del Aeropuerto: <br >   ${ver.codAeropuerto}</td><br >    
+                                <td>Nombre del Aeropuerto: <br > ${ver.nombreAeropuerto}</td><br>  
                                 <td>Localidad: <br >${ver.localidad}</td><br>  
                                 <td>Pais: <br >${ver.pais}</td><br>  
 
                                 </tr>
+                                <a href="${pageContext.request.contextPath}/aeropuerto?action=borrar&id=${ver.codAeropuerto}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
 
                             </div>
                         </div>

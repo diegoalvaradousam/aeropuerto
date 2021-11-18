@@ -87,11 +87,11 @@ public class ReservaServlet extends HttpServlet {
         reserva.setFechaLlegada(fechaLlegada);
 
         Aeropuerto aeroSalida = new Aeropuerto();
-        aeroSalida.setCodArepuerto(aeropuertoSalida);
+        aeroSalida.setCodAeropuerto(aeropuertoSalida);
         reserva.setAeropuertoSalida(aeroSalida);
 
         Aeropuerto aeroLlegada = new Aeropuerto();
-        aeroLlegada.setCodArepuerto(aeropuertoLlegada);
+        aeroLlegada.setCodAeropuerto(aeropuertoLlegada);
         reserva.setAeropuertoLlegada(aeroLlegada);
 
         Clientes clientes = new Clientes();
@@ -151,11 +151,11 @@ public class ReservaServlet extends HttpServlet {
         reserva.setFechaLlegada(fechaLlegada);
 
         Aeropuerto aeroSalida = new Aeropuerto();
-        aeroSalida.setCodArepuerto(aeropuertoSalida);
+        aeroSalida.setCodAeropuerto(aeropuertoSalida);
         reserva.setAeropuertoSalida(aeroSalida);
 
         Aeropuerto aeroLlegada = new Aeropuerto();
-        aeroLlegada.setCodArepuerto(aeropuertoLlegada);
+        aeroLlegada.setCodAeropuerto(aeropuertoLlegada);
         reserva.setAeropuertoLlegada(aeroLlegada);
 
         Clientes clientes = new Clientes();
@@ -181,7 +181,7 @@ public class ReservaServlet extends HttpServlet {
 
     protected void delete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int Cod_reserva = Integer.parseInt(request.getParameter("Cod_reserva"));
+        int Cod_reserva = Integer.parseInt(request.getParameter("id"));
         respuesta = reservad.delete(Cod_reserva);
         if (respuesta) {
             msg = "La Reserva se Borro Exitosamente";
@@ -200,7 +200,7 @@ public class ReservaServlet extends HttpServlet {
         List<Aeropuerto> alist = adao.findAll();
         String html = "";
         for (Aeropuerto a : alist) {
-            html += "<option value='" + a.getCodArepuerto() + "'>" + a.getCodArepuerto() + " ---- " + a.getNombreAerpuerto() + "</option>";
+            html += "<option value='" + a.getCodAeropuerto()+ "'>" + a.getCodAeropuerto()+ " ---- " + a.getNombreAeropuerto()+ "</option>";
         }
         PrintWriter out = response.getWriter();
         out.print(html);
