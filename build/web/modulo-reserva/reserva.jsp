@@ -1,6 +1,23 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page  session="true" %>
+
+<%
+    HttpSession sesion = request.getSession();
+    String usuario;
+   
+    
+if(session.getAttribute("usuario")!= null){
+    usuario = session.getAttribute("usuario").toString();
+    
+}else{
+    request.getRequestDispatcher("/index.jsp").forward(request, response);
+}
+
+                    
+
+    %> 
 <html>
     <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -40,36 +57,12 @@
         </style>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col s12">
-                    <nav style="background-color: purple">
-                        <div class="nav-wrapper" >
-                            <a class="brand-logo">&nbsp; Reservas de Vuelos <i class="fas fa-paper-plane right"></i></a> 
-                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                            <ul class="right hide-on-med-and-down">
-                                <li><a href="./" >Index<i class="fas fa-location-arrow left"></i></a></li>
-                                <li><a href="./modulo-clientes/clientes.jsp" >Clientes<i class="small material-icons left">group</i></a></li>
-                                <li><a href="./modulo-tarjeta/tarjeta.jsp"><i class="fas fa-id-card left"></i>Añadir Tarjeta</a></li>                              
-                                <li class="active"><a href="./modulo-reserva/agregar-reserva.jsp"><i class="small material-icons left">assignment_turned_in</i>Añadir Reserva de vuelo</a></li>
-                                <li><a href="./modulo-aeropuerto/aeropuerto.jsp"><i class="fas fa-plane-departure left"></i>Añadir Aeropuertos</a></li>
-                                <li><a href="./modulo-aviones/aviones.jsp"><i class="small material-icons left">airplanemode_active</i>Añadir Aviones</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                    <ul class="sidenav" id="mobile-demo">
-                        <li><a href="modulo-clientes/clientes.jsp" >Clientes<i class="small material-icons left">group</i></a></li>
-                        <li><a href="./modulo-tarjeta/tarjeta.jsp"><i class="fas fa-id-card left"></i>Añadir Tarjeta</a></li>                              
-                        <li class="active"><a href="./modulo-reserva/reserva.jsp"><i class="small material-icons left">assignment_turned_in</i>Reserva de vuelo de clientes</a></li>
-                        <li><a href="./modulo-aeropuerto/aeropuerto.jsp"><i class="fas fa-plane-departure left"></i>Añadir Aeropuertos</a></li>
-                        <li><a href="./modulo-aviones/aviones.jsp"><i class="small material-icons left">airplanemode_active</i>Añadir Aviones</a></li>
-                    </ul>                 
-                </div>
-            </div>
-        </div><br> 
+            <jsp:include page='../navbar.jsp'/>
 
         <div class="container service" >
-
+            <br>
+                <a class="waves-effect waves-light btn" href="${pageContext.request.contextPath}/modulo-reserva/agregar-reserva.jsp">Agregar Reserva</a>
+            <br><br>
             <div class="row">
                 <c:forEach items="${lista}" var="ver">
                     <div class="col s12 m6 l3 center-align">
@@ -77,18 +70,19 @@
                             <div class="card-image">
                                 <img src="./imagen/reserva.png">
                                 <span class="card-title">Reserva de Vuelo</span>
-                                <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                                <!--<a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>-->
                             </div>
                             <div class="card-content">
                                 <tr>
                                     <td>Codigo Reserva: <br >   ${ver.codReserva}</td><br >    
                                 <td>Fecha de Salida: <br > ${ver.fechaSalida}</td><br>  
                                 <td>Fecha de Llegada: <br >${ver.fechaLlegada}</td><br>  
-                                <td>Aerpuerto de Salida: <br >${ver.aeropuertoSalida.nombreAerpuerto}</td><br>  
-                                <td>Aerpuerto de Llegada: <br >${ver.aeropuertoLlegada.nombreAerpuerto}</td><br>
+                                <td>Aerpuerto de Salida: <br >${ver.aeropuertoSalida.nombreAeropuerto}</td><br>  
+                                <td>Aerpuerto de Llegada: <br >${ver.aeropuertoLlegada.nombreAeropuerto}</td><br>
                                 <td>DNI del Cliente <br >${ver.dniCliente.nombre}</td><br>  
                                 <td>Codigo del Avion: <br >${ver.codAvion.codAvion}</td><br>  
                                 </tr>
+                                <a href="${pageContext.request.contextPath}/reserva?action=borrar&id=${ver.codReserva}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
 
                             </div>
                         </div>
@@ -99,7 +93,7 @@
 
         </div>
 
-        <script src="./js/materialize.js" type="text/javascript"></script>
+        <script src="../js/materialize.js" type="text/javascript"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function () {

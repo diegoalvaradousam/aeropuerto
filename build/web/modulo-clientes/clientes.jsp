@@ -1,15 +1,34 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page  session="true" %>
+
+<%
+    HttpSession sesion = request.getSession();
+    String usuario;
+   
+    
+if(session.getAttribute("usuario")!= null){
+    usuario = session.getAttribute("usuario").toString();
+    
+}else{
+    request.getRequestDispatcher("/index.jsp").forward(request, response);
+}
+
+                    
+
+    %>
 <html>
     <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="./css/materialize.min.css"  media="screen,projection"/>
         <link href="https://fonts.googleapis.com/icon?fa Fmily=Material+Icons" rel="stylesheet"><!-- comment -->
         <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
         <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
         <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -38,56 +57,34 @@
         </style>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col s12">
-                    <nav style="background-color: purple">
-                        <div class="nav-wrapper" >
-                            <a class="brand-logo">&nbsp; Reservas de Vuelos <i class="fas fa-paper-plane right"></i></a> 
-                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                            <ul class="right hide-on-med-and-down">
-                                <li><a href="../" >Index<i class="fas fa-location-arrow left"></i></a></li>
-                                <li><a href="agregar-clientes.jsp" >Agregar Clientes<i class="fas fa-user-plus left"></i></a></li>
-                                <li><a href="../modulo-tarjeta/tarjeta.jsp"><i class="fas fa-id-card left"></i>Añadir Tarjeta</a></li>                              
-                                <li class="active"><a href="../modulo-reserva/reserva.jsp"><i class="small material-icons left">assignment_turned_in</i>Reserva de vuelo de clientes</a></li>
-                                <li><a href="../modulo-aeropuerto/aeropuerto.jsp"><i class="fas fa-plane-departure left"></i>Aeropuertos</a></li>
-                                <li><a href="../modulo-aviones/aviones.jsp"><i class="small material-icons left">airplanemode_active</i>Aviones</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                    <ul class="sidenav" id="mobile-demo">
-                                                   <li><a href="modulo-clientes/clientes.jsp" >Clientes<i class="small material-icons left">group</i></a></li>
-                                <li><a href="../modulo-tarjeta/tarjeta.jsp"><i class="fas fa-id-card left"></i>Añadir Tarjeta</a></li>                              
-                                <li class="active"><a href="../modulo-reserva/reserva.jsp"><i class="small material-icons left">assignment_turned_in</i>Reserva de vuelo de clientes</a></li>
-                                <li><a href="../modulo-aeropuerto/aeropuerto.jsp"><i class="fas fa-plane-departure left"></i>Aeropuertos</a></li>
-                                <li><a href="../modulo-aviones/aviones.jsp"><i class="small material-icons left">airplanemode_active</i>Aviones</a></li>
-                    </ul>                 
-                </div>
-            </div>
-        </div><br> 
+        <jsp:include page='../navbar.jsp'/>
 
         <div class="container service" >
 
             <div class="row">
+                <br>
+                <a class="waves-effect waves-light btn" href="${pageContext.request.contextPath}/modulo-clientes/agregar-clientes.jsp">Agregar Clientes</a>
+<br><br>
                 <c:forEach items="${lista}" var="ver">
                     <div class="col s12 m6 l3 center-align">
                         <div class="card">
                             <div class="card-image">
-                                <img src="../imagen/office.png">
+                                <img src="./imagen/office.png">
                                 <span class="card-title">Cliente</span>
-                                <a href="actualizar-clientes.jsp" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                                <a href="/parcial2Vuelos/clientes?action=mostrarById&id=${ver.dni}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                             </div>
                             <div class="card-content">
 
                                 <tr>
-                                    <td>DNI: <br>${ver.DNI}</td><br>   
-                                <td>Tarjeta de Embarque <br>${ver.tarjeta_embarque}</td><br>  
+                                    <td>DNI: <br>${ver.dni}</td><br>   
+                                <td>Tarjeta de Embarque <br>${ver.tarjetaEmbarque.tarjetaEmbarque}</td><br>  
                                 <td>Nombre: <br>${ver.nombre}</td><br>  
                                 <td>Apellido: <br>${ver.apellido}</td><br>  
                                 <td>Direccion: <br>${ver.direccion}</td><br>
                                 <td>Telefono: <br>${ver.telefono}</td><br>  
-                                <td>Tarjeta de Credito: <br>${ver.tarjeta_credito}</td><br>  
+                                <td>Tarjeta de Credito: <br>${ver.tarjetaCredito}</td><br>  
                                 </tr>
+                                <a href="/parcial2Vuelos/clientes?action=borrar&id=${ver.dni}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
 
                             </div>
                         </div>

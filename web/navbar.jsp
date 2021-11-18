@@ -6,6 +6,23 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%--  <%@page  session="true" %>
+
+<%
+    HttpSession sesion = request.getSession();
+    String usuario;
+   
+    
+if(session.getAttribute("usuario")!= null){
+    usuario = session.getAttribute("usuario").toString();
+    
+}else{
+    request.getRequestDispatcher("/index.jsp").forward(request, response);
+}
+
+                    
+
+    %> --%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,7 +48,7 @@
                 </ul>
                    <ul id="nav-mobile" class="right">
                     <li><a href="#" id="itemMenu">NOMBRE</a></li>
-                    <li><a href="#" id="itemMenu">Cerrar Sesion</a></li>
+                    <li><a href="clientes?action=logout" id="itemMenu">Cerrar Sesion</a></li>
                 </ul>
             </div>
         </nav>

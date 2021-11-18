@@ -1,15 +1,34 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page  session="true" %>
+
+<%
+    HttpSession sesion = request.getSession();
+    String usuario;
+   
+    
+if(session.getAttribute("usuario")!= null){
+    usuario = session.getAttribute("usuario").toString();
+    
+}else{
+    request.getRequestDispatcher("/index.jsp").forward(request, response);
+}
+
+                    
+
+    %> 
 <html>
     <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="../css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="./css/materialize.min.css"  media="screen,projection"/>
         <link href="https://fonts.googleapis.com/icon?fa Fmily=Material+Icons" rel="stylesheet"><!-- comment -->
         <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
         <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
         <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -38,71 +57,44 @@
         </style>
     </head>
     <body>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col s12">
-                    <nav style="background-color: purple">
-                        <div class="nav-wrapper" >
-                            <a class="brand-logo">&nbsp; Reservas de Vuelos <i class="fas fa-paper-plane right"></i></a> 
-                            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-                            <ul class="right hide-on-med-and-down">
-                                <li><a href="../" >Index<i class="fas fa-location-arrow left"></i></a></li>
-                                <li><a href="../modulo-clientes/clientes.jsp" >Clientes<i class="small material-icons left">group</i></a></li>
-                                <li><a href="tarjeta.jsp" >Tarjeta<i class="fas fa-id-card left"></i></a></li>                           
-                                <li class="active"><a href="../modulo-reserva/reserva.jsp"><i class="small material-icons left">assignment_turned_in</i>Reserva de vuelo de clientes</a></li>
-                                <li><a href="../modulo-aeropuerto/aeropuerto.jsp"><i class="fas fa-plane-departure left"></i>Añadir Aeropuertos</a></li>
-                                <li><a href="../modulo-aviones/aviones.jsp"><i class="small material-icons left">airplanemode_active</i>Añadir Aviones</a></li>
-                            </ul>
-                        </div>
-                    </nav>
-                    <ul class="sidenav" id="mobile-demo">
-                       <li><a href="../" >Index<i class="fas fa-location-arrow left"></i></a></li>
-                                <li><a href="../modulo-clientes/clientes.jsp" >Clientes<i class="small material-icons left">group</i></a></li>
-                                <li><a href="tarjeta.jsp" >Tarjeta<i class="fas fa-id-card left"></i></a></li>                           
-                                <li class="active"><a href="../modulo-reserva/reserva.jsp"><i class="small material-icons left">assignment_turned_in</i>Reserva de vuelo de clientes</a></li>
-                                <li><a href="../modulo-aeropuerto/aeropuerto.jsp"><i class="fas fa-plane-departure left"></i>Añadir Aeropuertos</a></li>
-                                <li><a href="../modulo-aviones/aviones.jsp"><i class="small material-icons left">airplanemode_active</i>Añadir Aviones</a></li>
-                    </ul>                 
-                </div>
-            </div>
-        </div><br> 
+        <jsp:include page='../navbar.jsp'/>
+        <br>
 
-
-
-    
         <div class="container"> 
-            <form action="tarjeta?action=actualizar" method="POST">
-                <div class="col s12 m6 l6">
-                    <div class="row">
-                         <div class="input-field col s6">                     
-                            <label for="tarjeta_embarque">Tarjeta de Embarque <i class="fa-lg fas fa-couch"></i></label>
-                            <input type="number" id="tarjeta_embarque" class="autocomplete" name="tarjeta_embarque" value=""> 
-                        </div>
-                        <div class="input-field col s6">                     
-                            <label for="asiento">Asiento <i class="fa-lg fas fa-couch"></i></label>
-                            <input type="number" id="asiento" class="autocomplete" name="asiento" value=""> 
-                        </div>
-                    </div>   
-                    <div class="row">
-                        <div class="input-field col s6">                     
-                            <label for="columna">Columna <i class="fa-lg fas fa-columns"></i></label>
-                            <input type="text" id="columna" class="autocomplete" name="columna" value=""> 
-                        </div>
-                        <div class="input-field col s6">                     
-                            <label for="planta">Planta <i class="fa-lg fas fa-ruler-horizontal"></i></label>
-                            <input type="number" id="planta" class="autocomplete" name="planta" value=""> 
-                        </div>
-                    </div> 
-
-                  <button type="submit" class="waves-effect waves-light btn"><i class="fas fa-user-plus left"></i>Actualizar</button>
-
-            </form>
+            <h3>Actualizar Tarjeta</h3>
+            <c:forEach items="${lista}" var="ver">
+                <form action="/parcial2Vuelos/tarjeta?action=insertar" method="POST">
+                    <div class="col s12 m6 l6">
+                        <div class="row">
+                            <div class="input-field col s6">                     
+                                <label for="tarjeta_embarque">Tarjeta de Embarque <i class="fa-lg fas fa-couch"></i></label>
+                                <input type="number" id="tarjeta_embarque" class="autocomplete" name="tarjeta_embarque" value="${ver.tarjetaEmbarque}"> 
+                            </div>
+                            <div class="input-field col s6">                     
+                                <label for="asiento">Asiento <i class="fa-lg fas fa-couch"></i></label>
+                                <input type="number" id="asiento" class="autocomplete" name="asiento" value="${ver.asiento}"> 
+                            </div>
+                        </div>   
+                        <div class="row">
+                            <div class="input-field col s6">                     
+                                <label for="columna">Columna <i class="fa-lg fas fa-columns"></i></label>
+                                <input type="text" id="columna" class="autocomplete" name="columna" value="${ver.columna}"> 
+                            </div>
+                            <div class="input-field col s6">                     
+                                <label for="planta">Planta <i class="fa-lg fas fa-ruler-horizontal"></i></label>
+                                <input type="number" id="planta" class="autocomplete" name="planta" value="${ver.planta}"> 
+                            </div>
+                        </div> 
+                        <button type="submit" class="waves-effect waves-light btn"><i class="fas fa-user-plus left"></i>Actualizar</button>
+                </form>
+            </c:forEach>    
 
         </div> 
 
 
     </div> 
     <script src="../js/materialize.js" type="text/javascript"></script>
+    <script src="./js/materialize.js" type="text/javascript"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             M.AutoInit();

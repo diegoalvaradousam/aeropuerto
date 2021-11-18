@@ -1,6 +1,23 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page  session="true" %>
+
+<%
+    HttpSession sesion = request.getSession();
+    String usuario;
+   
+    
+if(session.getAttribute("usuario")!= null){
+    usuario = session.getAttribute("usuario").toString();
+    
+}else{
+    request.getRequestDispatcher("/index.jsp").forward(request, response);
+}
+
+                    
+
+    %>
 <html>
     <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

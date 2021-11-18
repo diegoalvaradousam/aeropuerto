@@ -13,6 +13,29 @@ public class ClientesDao {
     Conexion conn = new Conexion();
     EmbarqueDao edao = new EmbarqueDao();
 
+    
+    
+   public boolean login(String usuario, String clave){
+        String sql="select usuario, clave from clientes where usuario =? and clave =?";
+        try{
+            PreparedStatement ps = conn.conectar().prepareStatement(sql);
+            ps.setString(1, usuario);
+            ps.setString(2,clave);
+            ResultSet rs = ps.executeQuery();
+            
+            if(rs.next()){
+                return true;
+            }
+            return false;
+        }catch(Exception e){
+            return false;
+        }
+        
+    } 
+    
+    
+    
+    
     public boolean insert(Clientes c) {
         String sql = "INSERT INTO clientes values(?,?,?,?,?,?,?)";
         try {

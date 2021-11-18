@@ -5,12 +5,20 @@
         <servlet-class>controller.ReservaServlet</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ClientesServlet</servlet-name>
+        <servlet-class>controller.ClientesServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>TarjetaServlet</servlet-name>
         <servlet-class>controller.TarjetaServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ReservaServlet</servlet-name>
         <url-pattern>/reserva</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ClientesServlet</servlet-name>
+        <url-pattern>/clientes</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TarjetaServlet</servlet-name>

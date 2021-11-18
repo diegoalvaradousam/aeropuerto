@@ -1,6 +1,23 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@page  session="true" %>
+
+<%
+    HttpSession sesion = request.getSession();
+    String usuario;
+   
+    
+if(session.getAttribute("usuario")!= null){
+    usuario = session.getAttribute("usuario").toString();
+    
+}else{
+    request.getRequestDispatcher("/index.jsp").forward(request, response);
+}
+
+                    
+
+    %> 
 <html>
     <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -60,8 +77,8 @@
                                     <td>Codigo Reserva: <br >   ${ver.codReserva}</td><br >    
                                 <td>Fecha de Salida: <br > ${ver.fechaSalida}</td><br>  
                                 <td>Fecha de Llegada: <br >${ver.fechaLlegada}</td><br>  
-                                <td>Aerpuerto de Salida: <br >${ver.aeropuertoSalida.nombreAerpuerto}</td><br>  
-                                <td>Aerpuerto de Llegada: <br >${ver.aeropuertoLlegada.nombreAerpuerto}</td><br>
+                                <td>Aerpuerto de Salida: <br >${ver.aeropuertoSalida.nombreAeropuerto}</td><br>  
+                                <td>Aerpuerto de Llegada: <br >${ver.aeropuertoLlegada.nombreAeropuerto}</td><br>
                                 <td>DNI del Cliente <br >${ver.dniCliente.nombre}</td><br>  
                                 <td>Codigo del Avion: <br >${ver.codAvion.codAvion}</td><br>  
                                 </tr>

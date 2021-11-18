@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Aeropuerto;
 import model.Aviones;
 import model.Clientes;
@@ -76,8 +77,45 @@ public class ClientesServlet extends HttpServlet {
             case "viewEmbarque":
                 viewEmbarque(request, response);
                 break;
+            case "login": login (request, response);
+            case "logout": logout(request, response);
         }
 
+    }
+    
+    
+     protected void login(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String usuario = request.getParameter("usuario");
+        String clave = request.getParameter("clave");
+        
+        respuesta  = cdao.login(usuario, clave);
+        
+                if (respuesta){
+                    
+                    HttpSession session = request.getSession();
+                    session.setAttribute("usuario",usuario);
+                    request.getRequestDispatcher("/home.jsp").forward(request, response);
+                    request.getRequestDispatcher("/clientes.jsp").forward(request, response);
+                    
+                     request.getRequestDispatcher("/aeropuerto.jsp").forward(request, response);
+                     request.getRequestDispatcher("/aviones.jsp").forward(request, response);
+                     request.getRequestDispatcher("/reserva.jsp").forward(request, response);
+                     request.getRequestDispatcher("/tarjeta.jsp").forward(request, response);
+                }else{
+                    msg ="usuario o clave incorrecta";
+                    request.setAttribute("msg", msg);
+                    request.getRequestDispatcher("/index.jsp").forward(request, response);
+                    
+                }
+                
+    }
+    protected void logout(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession sesion = request.getSession();
+        sesion.invalidate();
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
+                    
     }
 
     protected void insert(HttpServletRequest request, HttpServletResponse response)
