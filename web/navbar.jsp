@@ -47,7 +47,7 @@ if(session.getAttribute("usuario")!= null){
                     <li><a href="#" id="itemMenu"><i class="material-icons">menu</i></a></li>
                 </ul>
                    <ul id="nav-mobile" class="right">
-                    <li><a href="#" id="itemMenu">NOMBRE</a></li>
+                    <li><a href="#" id="itemMenu">Bienvenido <%=session.getAttribute("usuario").toString()%>!</a></li>
                     <li><a href="${pageContext.request.contextPath}/clientes?action=logout" id="itemMenu">Cerrar Sesion</a></li>
                 </ul>
             </div>
@@ -58,7 +58,7 @@ if(session.getAttribute("usuario")!= null){
                         <img src="${pageContext.request.contextPath}/imagen/table.jpg">
                     </div>
                     <a href="#user"><img class="circle" src="${pageContext.request.contextPath}/imagen/plane_travel.png"></a>
-                    <a href="#name"><span class="white-text name">${name}</span></a><br>
+                    <a href="#name"><span class="white-text name">Hola <%=session.getAttribute("usuario").toString()%></span></a><br>
                     <!--<a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>-->
                 </div></li>
                 <li><a href="${pageContext.request.contextPath}/clientes?action=mostrar">Clientes</a></li>            
