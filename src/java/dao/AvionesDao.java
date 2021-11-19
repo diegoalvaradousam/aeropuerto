@@ -13,37 +13,34 @@ public class AvionesDao {
     Conexion conn = new Conexion();
     AeropuertoDao adao = new AeropuertoDao();
 
-    public Aviones insert(Aviones a) {
+    public boolean insert(Aviones a) {
         String sql = "INSERT INTO aviones values(?,?,?)";
         try {
-            String[] generatedColumns = {"Cod_avion"};
-            PreparedStatement ps = conn.conectar().prepareStatement(sql, generatedColumns);
-            ps.setInt(1, 1);
+
+            PreparedStatement ps = conn.conectar().prepareStatement(sql);
+            ps.setInt(1, 0);
             ps.setInt(2, a.getNum_plazas());
             ps.setInt(3, a.getCod_aeropuerto().getCodAeropuerto());
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                a.setCodAvion(rs.getInt(1));
-            }
-            return a;
+            ps.executeUpdate();
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 
-    public Aviones update(Aviones a) {
-        String sql = "update aviones set numPlazas=?, Cod_aeropuerto=? where Cod_avion=?";
+    public boolean update(Aviones a) {
+        String sql = "update aviones set num_plazas=?, Cod_aeropuerto=? where Cod_avion=?";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, a.getNum_plazas());
             ps.setInt(2, a.getCod_aeropuerto().getCodAeropuerto());
             ps.setInt(3, a.getCodAvion());
             ps.executeUpdate();
-            return a;
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
     }
 

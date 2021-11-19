@@ -37,7 +37,7 @@ public class ClientesDao {
     
     
     public boolean insert(Clientes c) {
-        String sql = "INSERT INTO clientes values(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO clientes values(?,?,?,?,?,?,?,?,?)";
         try {
             String[] generatedColumns = {"DNI"};
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
@@ -48,6 +48,8 @@ public class ClientesDao {
             ps.setString(5, c.getDireccion());
             ps.setString(6, c.getTelefono());
             ps.setString(7, c.getTarjetaCredito());
+            ps.setString(8, c.getUsuario());
+            ps.setString(9, c.getClave());
 //            ResultSet rs = ps.getGeneratedKeys();
 //            if (rs.next()) {
 //                c.setDni(rs.getInt(1));
@@ -61,7 +63,7 @@ public class ClientesDao {
     }
 
     public boolean update(Clientes c) {
-        String sql = "update clientes set tarjeta_embarque=?, nombre=?, apellido=?,direccion=?, telefono=?, tarjeta_credito=? where DNI=?";
+        String sql = "update clientes set tarjeta_embarque=?, nombre=?, apellido=?,direccion=?, telefono=?, tarjeta_credito=?, usuario=?, clave=? where DNI=?";
         try {
             String[] generatedColumns = {"DNI"};
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
@@ -71,7 +73,9 @@ public class ClientesDao {
             ps.setString(4, c.getDireccion());
             ps.setString(5, c.getTelefono());
             ps.setString(6, c.getTarjetaCredito());
-            ps.setInt(7, c.getDni());
+            ps.setString(7, c.getUsuario());
+            ps.setString(8, c.getClave());
+            ps.setInt(9, c.getDni());
 
             ps.executeUpdate();
             return true;
@@ -94,6 +98,8 @@ public class ClientesDao {
                 c.setTarjetaEmbarque(edao.findById(tarjetaEmbarqueId));
                 c.setNombre(rs.getString("nombre"));
                 c.setApellido(rs.getString("apellido"));
+                c.setUsuario(rs.getString("usuario"));
+                c.setClave(rs.getString("clave"));
                 c.setDireccion(rs.getString("direccion"));
                 c.setTelefono(rs.getString("telefono"));
                 c.setTarjetaCredito(rs.getString("tarjeta_credito"));
@@ -118,6 +124,8 @@ public class ClientesDao {
                 c.setTarjetaEmbarque(edao.findById(tarjetaEmbarqueId));
                 c.setNombre(rs.getString("nombre"));
                 c.setApellido(rs.getString("apellido"));
+                c.setUsuario(rs.getString("usuario"));
+                c.setClave(rs.getString("clave"));
                 c.setDireccion(rs.getString("direccion"));
                 c.setTelefono(rs.getString("telefono"));
                 c.setTarjetaCredito(rs.getString("tarjeta_credito"));

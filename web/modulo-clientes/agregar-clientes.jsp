@@ -51,6 +51,16 @@
                             <input type="text" id="apellido" class="autocomplete" name="apellido" value=""> 
                         </div>
                     </div> 
+                    <div class="row">
+                        <div class="input-field col s6">                     
+                            <label for="usuario">Usuario <i class="fa-lg fas fa-signature"></i></label>
+                            <input type="text" id="usuario" class="autocomplete" name="usuario" value="" required="true"> 
+                        </div>
+                        <div class="input-field col s6">                     
+                            <label for="clave">Clave<i class="fa-lg fas fa-signature"></i></label>
+                            <input type="password" id="clave" class="autocomplete" name="clave" value="" required="true">  
+                        </div>
+                    </div> 
 
                     <div class="row">
                         <div class="input-field col s6">                     

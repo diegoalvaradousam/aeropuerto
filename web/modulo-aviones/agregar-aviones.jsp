@@ -41,23 +41,25 @@
         <jsp:include page='../navbar.jsp'/>
         <br> 
         <div class="container"> 
-            <form action="usuario?action=insertar" method="POST">
+            <form action="${pageContext.request.contextPath}/aviones?action=insertar" method="POST">
                 <div class="col s12 m6 l6">
                     <div class="row">
-                        <div class="input-field col s6">                     
+<!--                        <div class="input-field col s6">                     
                             <label for="autocomplete-input">Codigo del Avion <i class="fa-lg fas fa-code"></i></label>
                             <input type="text" id="autocomplete-input" class="autocomplete" name="Cod_avion" value=""> 
-                        </div>
+                        </div>-->
                         <div class="input-field col s6">                     
-                            <label for="autocomplete-input">Numero de las Plazas <i class="fa-lg fas fa-chair"></i></label>
-                            <input type="text" id="autocomplete-input" class="autocomplete" name="num_plazas" value=""> 
+                            <label for="numPlazas">Numero de asientos <i class="fa-lg fas fa-chair"></i></label>
+                            <input type="number" id="numPlazas" class="autocomplete" name="numPlazas" value=""> 
                         </div>
-                    </div>   
+                   
                     <div class="row">
-                        <div class="input-field col s6">                     
-                            <label for="autocomplete-input">Localidad del Aeropuerto <i class="fa-lg fas fa-code"></i></label>
-                            <input type="text" id="autocomplete-input" class="autocomplete" name="Cod_aeropuerto" value=""> 
-                        </div>
+                        <div class="input-field col s6">
+                            <select name="aeropuerto" id="aeropuerto">
+                                <option value="" disabled selected>Seleccione</option>
+                            </select>
+                            <label>Aeropuerto de Salida <i class="fa-lg fas fa-plane-departure"></i></label>
+               
                     </div> 
 
                     <button type="submit" class="waves-effect waves-light btn"><i class="fas fa-user-plus left"></i>Agregar</button>
@@ -73,7 +75,22 @@
         document.addEventListener('DOMContentLoaded', function () {
             M.AutoInit();
         });
-
+        $(document).ready(function () {
+            console.log("READY");
+            $.ajax({
+                method: "GET",
+                url: "/parcial2Vuelos/reserva?action=viewAirport"
+            }).done(function (data) {
+                console.log(data);
+                $('#aeropuerto').append(data);
+                $('#aeropuerto').formSelect();
+                // alert(data); // imprimimos la respuesta
+            }).fail(function () {
+                alert("Algo salió mal");
+            }).always(function () {
+                //   alert("Siempre se ejecuta")
+            });
+        });
     </script>
     <script src="https://kit.fontawesome.com/cc794b3cc5.js" crossorigin="anonymous"></script>
 </body>

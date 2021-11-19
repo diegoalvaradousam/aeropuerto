@@ -8,21 +8,42 @@ public class Clientes {
     private String apellido;
     private String direccion;
     private String telefono;
+    private String usuario;
+    private String clave;
     private String tarjetaCredito;
 
     public Clientes() {
     }
 
-    public Clientes(int dni, Embarque tarjetaEmbarque, String nombre, String apellido, String direccion, String telefono, String tarjetaCredito) {
+    public Clientes(int dni, Embarque tarjetaEmbarque, String nombre, String apellido, String direccion, String telefono, String usuario, String clave, String tarjetaCredito) {
         this.dni = dni;
         this.tarjetaEmbarque = tarjetaEmbarque;
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.usuario = usuario;
+        this.clave = clave;
         this.tarjetaCredito = tarjetaCredito;
     }
 
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getClave() {
+        return clave;
+    }
+
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
+
+   
     public int getDni() {
         return dni;
     }

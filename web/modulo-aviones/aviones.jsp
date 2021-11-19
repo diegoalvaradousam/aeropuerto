@@ -10,6 +10,7 @@
         <link href="/your-path-to-fontawesome/css/fontawesome.css" rel="stylesheet">
         <link href="/your-path-to-fontawesome/css/brands.css" rel="stylesheet">
         <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
+        <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -51,18 +52,19 @@
                     <div class="col s12 m6 l3 center-align">
                         <div class="card">
                             <div class="card-image">
-                                <img src="../imagen/plane.png">
+                                <img src="${pageContext.request.contextPath}/imagen/plane.png">
                                 <span class="card-title">Aviones</span>
-                                <a  href="actualizar-aviones.jsp" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+                                <a href="${pageContext.request.contextPath}/aviones?action=mostrarById&id=${ver.codAvion}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
                             </div>
                             <div class="card-content">
 
                                 <tr>
-                                    <td>Codigo del Avion: <br>${ver.Cod_avion} </td><br>   
-                                <td>Numero de Plazas <br>${ver.num_plazas}</td><br>  
-                                <td>Codigo del aeropuerto <br>${ver.Cod_aeropuerto}</td><br>  
+                                    <td>Codigo del Avion: <br>${ver.codAvion} </td><br>   
+                                <td>Numero de asientos <br>${ver.num_plazas}</td><br>  
+                                <td>Codigo del aeropuerto <br>${ver.cod_aeropuerto.nombreAeropuerto}</td><br>  
 
                                 </tr>
+                                <a href="${pageContext.request.contextPath}/aviones?action=borrar&id=${ver.codAvion}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
 
                             </div>
                         </div>

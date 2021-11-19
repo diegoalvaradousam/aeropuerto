@@ -6,18 +6,16 @@
 <%
     HttpSession sesion = request.getSession();
     String usuario;
-   
-    
-if(session.getAttribute("usuario")!= null){
-    usuario = session.getAttribute("usuario").toString();
-    
-}else{
-    request.getRequestDispatcher("/index.jsp").forward(request, response);
-}
 
-                    
+    if (session.getAttribute("usuario") != null) {
+        usuario = session.getAttribute("usuario").toString();
 
-    %> 
+    } else {
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
+    }
+
+
+%> 
 <html>
     <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -72,7 +70,16 @@ if(session.getAttribute("usuario")!= null){
                                 <input type="text" id="apellido" class="autocomplete" name="apellido" value="${ver.apellido}"> 
                             </div>
                         </div> 
-
+                        <div class="row">
+                            <div class="input-field col s6">                     
+                                <label for="usuario">Usuario <i class="fa-lg fas fa-signature"></i></label>
+                                <input type="text" id="usuario" class="autocomplete" name="usuario" value="${ver.usuario}" required="true"> 
+                            </div>
+                            <div class="input-field col s6">                     
+                                <label for="clave">Clave<i class="fa-lg fas fa-signature"></i></label>
+                                <input type="password" id="clave" class="autocomplete" name="clave" value="${ver.clave}" required="true"> 
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="input-field col s6">                     
                                 <label for="direccion">Direccion <i class="fa-lg fas fa-map-marker-alt"></i></label>
