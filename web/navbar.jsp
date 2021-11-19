@@ -37,8 +37,17 @@ if(session.getAttribute("usuario")!= null){
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+     <script type="text/javascript">
+    window.history.forward();
+    function noBack()
+    {
+        window.history.forward();
+    }
+</script>
+
     </head>
-    <body>
+
+    <body onLoad="noBack();"  onpageshow="if (event.persisted) noBack();" onUnload="">
         <nav>
             <div class="nav-wrapper">
                 <a href="${pageContext.request.contextPath}/home.jsp" class="brand-logo center">AEROMAN</a>

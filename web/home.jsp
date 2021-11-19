@@ -34,7 +34,8 @@ if(session.getAttribute("usuario")!= null){
             body {
                 overflow: hidden; /* Hide scrollbars */
             }
-        </style>
+        </style>      
+        
     <script type="text/javascript">
     window.history.forward();
     function noBack()

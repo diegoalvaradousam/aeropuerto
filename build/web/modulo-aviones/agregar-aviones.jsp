@@ -36,8 +36,17 @@
             }
 
         </style>
+      <script type="text/javascript">
+    window.history.forward();
+    function noBack()
+    {
+        window.history.forward();
+    }
+</script>
+
     </head>
-    <body>
+
+    <body onLoad="noBack();"  onpageshow="if (event.persisted) noBack();" onUnload="">
         <jsp:include page='../navbar.jsp'/>
         <br> 
         <div class="container"> 
@@ -58,7 +67,7 @@
                             <select name="aeropuerto" id="aeropuerto">
                                 <option value="" disabled selected>Seleccione</option>
                             </select>
-                            <label>Aeropuerto de Salida <i class="fa-lg fas fa-plane-departure"></i></label>
+                            <label>Aeropuerto<i class="fa-lg fas fa-plane-departure"></i></label>
                
                     </div> 
 

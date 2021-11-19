@@ -38,8 +38,17 @@
             }
 
         </style>
+     <script type="text/javascript">
+    window.history.forward();
+    function noBack()
+    {
+        window.history.forward();
+    }
+</script>
+
     </head>
-    <body>
+
+    <body onLoad="noBack();"  onpageshow="if (event.persisted) noBack();" onUnload="">
         <jsp:include page='../navbar.jsp'/>
         <br>
         <div class="container"> 

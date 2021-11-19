@@ -4,16 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/modulo-reserva/agregar-reserva.jsp</file>
-            <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/modulo-aviones/aviones.jsp</file>
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/modulo-tarjeta/agregar-tarjeta.jsp</file>
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/modulo-tarjeta/tarjeta.jsp</file>
-            <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/modulo-reserva/reserva.jsp</file>
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/home.jsp</file>
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/modulo-clientes/clientes.jsp</file>
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/modulo-clientes/edit-clientes.jsp</file>
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/navbar.jsp</file>
-            <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/src/java/dao/ClientesDao.java</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/index.jsp</file>
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/modulo-aeropuerto/aeropuerto.jsp</file>
+            <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/js/custom.js.js</file>
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/modulo-clientes/agregar-clientes.jsp</file>
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/web/modulo-tarjeta/actualizar-tarjeta.jsp</file>
             <file>file:/C:/Users/PC/Documents/NetBeansProjects/aeropuerto/src/java/controller/ClientesServlet.java</file>
