@@ -12,6 +12,10 @@
         <servlet-name>TarjetaServlet</servlet-name>
         <servlet-class>controller.TarjetaServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AvionesServlet</servlet-name>
+        <servlet-class>controller.AvionesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ReservaServlet</servlet-name>
         <url-pattern>/reserva</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>TarjetaServlet</servlet-name>
         <url-pattern>/tarjeta</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AvionesServlet</servlet-name>
+        <url-pattern>/aviones</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

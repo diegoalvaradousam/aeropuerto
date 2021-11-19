@@ -66,7 +66,7 @@ if(session.getAttribute("usuario")!= null){
                 <a class="waves-effect waves-light btn" href="${pageContext.request.contextPath}/modulo-clientes/agregar-clientes.jsp">Agregar Clientes</a>
 <br><br>
                 <c:forEach items="${lista}" var="ver">
-                    <div class="col s12 m6 l3 center-align">
+                    <div class="col s12 m6 l4 center-align">
                         <div class="card">
                             <div class="card-image">
                                 <img src="./imagen/office.png">
@@ -80,6 +80,8 @@ if(session.getAttribute("usuario")!= null){
                                 <td>Tarjeta de Embarque <br>${ver.tarjetaEmbarque.tarjetaEmbarque}</td><br>  
                                 <td>Nombre: <br>${ver.nombre}</td><br>  
                                 <td>Apellido: <br>${ver.apellido}</td><br>  
+                                <td>Usuario: <br>${ver.usuario}</td><br>  
+                                <!--<td>Clave: <br></td><br>-->  
                                 <td>Direccion: <br>${ver.direccion}</td><br>
                                 <td>Telefono: <br>${ver.telefono}</td><br>  
                                 <td>Tarjeta de Credito: <br>${ver.tarjetaCredito}</td><br>  

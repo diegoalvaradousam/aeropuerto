@@ -35,8 +35,16 @@ if(session.getAttribute("usuario")!= null){
                 overflow: hidden; /* Hide scrollbars */
             }
         </style>
+    <script type="text/javascript">
+    window.history.forward();
+    function noBack()
+    {
+        window.history.forward();
+    }
+</script>
     </head>
-    <body>
+
+    <body onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
          <jsp:include page='navbar.jsp'>
                         <jsp:param name="name" value="Jorge"/>
                     </jsp:include>

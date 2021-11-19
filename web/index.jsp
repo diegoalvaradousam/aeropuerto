@@ -29,9 +29,16 @@
         <link rel="stylesheet" type="text/css" href="login_css/css/util.css">
         <link rel="stylesheet" type="text/css" href="login_css/css/main.css">
         <!--===============================================================================================-->
+    <script type="text/javascript">
+    window.history.forward();
+    function noBack()
+    {
+        window.history.forward();
+    }
+</script>
     </head>
 
-    <body>
+    <body onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
 
         <div class="limiter">
             <div class="container-login100" style="background-image: url('login_css/img/avion.jpg');">
