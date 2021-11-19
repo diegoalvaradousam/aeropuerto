@@ -42,10 +42,16 @@ if(session.getAttribute("usuario")!= null){
         window.history.forward();
     }
 </script>
+
+<style>
+body {
+  background-image: url('https://wallpaperaccess.com/full/1307258.jpg');
+}
+</style>
     </head>
 
-    <body onLoad="noBack();" onpageshow="if (event.persisted) noBack();" onUnload="">
-         <jsp:include page='navbar.jsp'>
+    <body onLoad="noBack();"  onpageshow="if (event.persisted) noBack();" onUnload="">
+         <jsp:include page='navbar.jsp' >
                         <jsp:param name="name" value="Jorge"/>
                     </jsp:include>
 
