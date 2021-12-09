@@ -22,14 +22,14 @@ public class EmbarqueDao {
     Conexion conn = new Conexion();
 
     public boolean insert(Embarque e) {
-        String sql = "INSERT INTO embarque values(?,?,?,?)";
+        String sql = "INSERT INTO embarque values(?,?,?)";
         try {
             String[] generatedColumns = {"tarjeta_embarque"};
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
-            ps.setInt(1, 0);
+            ps.setInt(1, e.getTarjetaEmbarque());
             ps.setInt(2, e.getAsiento());
-            ps.setString(3, e.getColumna());
-            ps.setInt(4, e.getPlanta());
+            ps.setString(3, e.getClase());
+            //ps.setInt(4, e.getPlanta());
 //            ResultSet rs = ps.getGeneratedKeys();
 //            if (rs.next()) {
 //                e.setTarjetaEmbarque(rs.getInt(1));
@@ -42,19 +42,19 @@ public class EmbarqueDao {
         }
     }
 
-    public Embarque update(Embarque e) {
-        String sql = "update embarque set asiento=?, columna=?, planta=? where tarjeta_embarque=?";
+    public boolean update(Embarque e) {
+        String sql = "update embarque set asiento=?, clase=? where tarjeta_embarque=?";
         try {
             PreparedStatement ps = conn.conectar().prepareStatement(sql);
             ps.setInt(1, e.getAsiento());
-            ps.setString(2, e.getColumna());
-            ps.setInt(3, e.getPlanta());
-            ps.setInt(4, e.getTarjetaEmbarque());
+            ps.setString(2, e.getClase());
+            //ps.setInt(3, e.getPlanta());
+            ps.setInt(3, e.getTarjetaEmbarque());
             ps.executeUpdate();
-            return e;
+            return true;
         } catch (Exception ex) {
             ex.printStackTrace();
-            return null;
+            return false;
         }
     }
 
@@ -68,8 +68,8 @@ public class EmbarqueDao {
                 Embarque a = new Embarque();
                 a.setTarjetaEmbarque(rs.getInt("tarjeta_embarque"));
                 a.setAsiento(rs.getInt("asiento"));
-                a.setColumna(rs.getString("columna"));
-                a.setPlanta(rs.getInt("planta"));
+                a.setClase(rs.getString("clase"));
+                //a.setPlanta(rs.getInt("planta"));
                 eList.add(a);
             }
         } catch (Exception e) {
@@ -88,8 +88,7 @@ public class EmbarqueDao {
             while (rs.next()) {
                 a.setTarjetaEmbarque(rs.getInt("tarjeta_embarque"));
                 a.setAsiento(rs.getInt("asiento"));
-                a.setColumna(rs.getString("columna"));
-                a.setPlanta(rs.getInt("planta"));
+                a.setClase(rs.getString("clase"));
             }
         } catch (Exception e) {
             e.printStackTrace();

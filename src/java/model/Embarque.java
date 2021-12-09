@@ -13,17 +13,15 @@ public class Embarque {
 
     private int tarjetaEmbarque;
     private int asiento;
-    private String columna;
-    private int planta;
+    private String clase;
 
     public Embarque() {
     }
 
-    public Embarque(int tarjetaEmbarque, int asiento, String columna, int planta) {
+    public Embarque(int tarjetaEmbarque, int asiento,String clase) {
         this.tarjetaEmbarque = tarjetaEmbarque;
         this.asiento = asiento;
-        this.columna = columna;
-        this.planta = planta;
+        this.clase=clase;
     }
 
     public int getTarjetaEmbarque() {
@@ -42,20 +40,11 @@ public class Embarque {
         this.asiento = asiento;
     }
 
-    public String getColumna() {
-        return columna;
+    public String getClase() {
+        return clase;
     }
 
-    public void setColumna(String columna) {
-        this.columna = columna;
+    public void setClase(String clase) {
+        this.clase = clase;
     }
-
-    public int getPlanta() {
-        return planta;
-    }
-
-    public void setPlanta(int planta) {
-        this.planta = planta;
-    }
-
 }

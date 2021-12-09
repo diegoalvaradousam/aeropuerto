@@ -58,14 +58,16 @@ public class TarjetaServlet extends HttpServlet {
     protected void insert(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int asiento = Integer.parseInt(request.getParameter("asiento"));
-        String columna = request.getParameter("columna");
-        int planta = Integer.parseInt(request.getParameter("planta"));
+        //String columna = request.getParameter("columna");
+        //int planta = Integer.parseInt(request.getParameter("planta"));
+        String clase = request.getParameter("clase");
         Embarque embarque = new Embarque();
         embarque.setTarjetaEmbarque(0);
         embarque.setAsiento(asiento);
-        embarque.setColumna(columna);
-        embarque.setPlanta(planta);
-        
+        embarque.setClase(clase);
+        //embarque.setColumna(columna);
+        //embarque.setPlanta(planta);
+
         if (embarqued.insert(embarque)) {
             msg = "Tarjeta de embarque Guardado Exitosamente";
         } else {
@@ -74,13 +76,13 @@ public class TarjetaServlet extends HttpServlet {
         request.setAttribute("msg", msg);
         rd = request.getRequestDispatcher("/tarjeta?action=mostrar");
         rd.forward(request, response);
-        
+
     }
 
     protected void findAll(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       lista = embarqued.findAll();
-        System.out.println("SIZEEEE: "+lista.size());
+        lista = embarqued.findAll();
+        System.out.println("SIZEEEE: " + lista.size());
         request.setAttribute("lista", lista);
         rd = request.getRequestDispatcher("/modulo-tarjeta/tarjeta.jsp");
         rd.forward(request, response);
@@ -88,7 +90,7 @@ public class TarjetaServlet extends HttpServlet {
 
     protected void findById(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       int id = Integer.valueOf(request.getParameter("id"));
+        int id = Integer.valueOf(request.getParameter("id"));
         Embarque eb = embarqued.findById(id);
         lista = new ArrayList<>();
         lista.add(eb);
@@ -99,18 +101,19 @@ public class TarjetaServlet extends HttpServlet {
 
     protected void update(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       int tarjeta_embarque =Integer.parseInt(request.getParameter("tarjeta_embarque"));
-       int asiento = Integer.parseInt(request.getParameter("asiento"));
-        String columna = request.getParameter("columna");
-        int planta = Integer.parseInt(request.getParameter("planta"));
+        int tarjeta_embarque = Integer.parseInt(request.getParameter("tarjeta_embarque"));
+        int asiento = Integer.parseInt(request.getParameter("asiento"));
+        //String columna = request.getParameter("columna");
+        //int planta = Integer.parseInt(request.getParameter("planta"));
+        String clase = request.getParameter("clase");
+
         Embarque embarque = new Embarque();
         embarque.setTarjetaEmbarque(tarjeta_embarque);
         embarque.setAsiento(asiento);
-        embarque.setColumna(columna);
-        embarque.setPlanta(planta);
-        
-        
-        if (embarqued.insert(embarque)) {
+        embarque.setClase(clase);
+//        embarque.setColumna(columna);
+//        embarque.setPlanta(planta);
+        if (embarqued.update(embarque)) {
             msg = "Se Guardo Exitosamente";
         } else {
             msg = "No se Pudo Guardar";
@@ -118,7 +121,7 @@ public class TarjetaServlet extends HttpServlet {
         lista = embarqued.findAll();
         request.setAttribute("msg", msg);
         request.setAttribute("lista", lista);
-        rd = request.getRequestDispatcher("/modulo-tarjeta/actualizar-tarjeta.jsp");
+        rd = request.getRequestDispatcher("/modulo-tarjeta/tarjeta.jsp");
         rd.forward(request, response);
     }
 
@@ -137,7 +140,6 @@ public class TarjetaServlet extends HttpServlet {
         rd = request.getRequestDispatcher("/tarjeta?action=mostrar");
         rd.forward(request, response);
 
-        
     }
 
     @Override

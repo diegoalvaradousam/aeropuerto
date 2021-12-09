@@ -87,8 +87,8 @@ if(session.getAttribute("usuario")!= null){
                                 <tr>                                    
                                     <td>Tarjeta de Embarque: <br>${ver.tarjetaEmbarque}</td><br>  
                                 <td>Asiento: <br>${ver.asiento}</td><br>  
-                                <td>Columna: <br>${ver.columna}</td><br>  
-                                <td>Planta: <br>${ver.planta}</td><br>                               
+                                <!--<td>Columna: <br></td><br>-->  
+                                <td>Clase: <br>${ver.clase}</td><br>                               
                                 </tr>
                                 <a href="/parcial2Vuelos/tarjeta?action=borrar&id=${ver.tarjetaEmbarque}" class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">delete</i></a>
 

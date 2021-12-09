@@ -6,18 +6,16 @@
 <%
     HttpSession sesion = request.getSession();
     String usuario;
-   
-    
-if(session.getAttribute("usuario")!= null){
-    usuario = session.getAttribute("usuario").toString();
-    
-}else{
-    request.getRequestDispatcher("/index.jsp").forward(request, response);
-}
 
-                    
+    if (session.getAttribute("usuario") != null) {
+        usuario = session.getAttribute("usuario").toString();
 
-    %> 
+    } else {
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
+    }
+
+
+%> 
 <html>
     <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -55,13 +53,13 @@ if(session.getAttribute("usuario")!= null){
             }
 
         </style>
-     <script type="text/javascript">
-    window.history.forward();
-    function noBack()
-    {
-        window.history.forward();
-    }
-</script>
+        <script type="text/javascript">
+            window.history.forward();
+            function noBack()
+            {
+                window.history.forward();
+            }
+        </script>
 
     </head>
 
@@ -72,44 +70,98 @@ if(session.getAttribute("usuario")!= null){
         <div class="container"> 
             <h3>Actualizar Tarjeta</h3>
             <c:forEach items="${lista}" var="ver">
-                <form action="/parcial2Vuelos/tarjeta?action=insertar" method="POST">
+                <form action="/parcial2Vuelos/tarjeta?action=actualizar" method="POST">
                     <div class="col s12 m6 l6">
                         <div class="row">
-                            <div class="input-field col s6">                     
+                            <div class="input-field col s6" style="display: none;">                     
                                 <label for="tarjeta_embarque">Tarjeta de Embarque <i class="fa-lg fas fa-couch"></i></label>
                                 <input type="number" id="tarjeta_embarque" class="autocomplete" name="tarjeta_embarque" value="${ver.tarjetaEmbarque}"> 
                             </div>
-                            <div class="input-field col s6">                     
-                                <label for="asiento">Asiento <i class="fa-lg fas fa-couch"></i></label>
-                                <input type="number" id="asiento" class="autocomplete" name="asiento" value="${ver.asiento}"> 
-                            </div>
-                        </div>   
-                        <div class="row">
-                            <div class="input-field col s6">                     
-                                <label for="columna">Columna <i class="fa-lg fas fa-columns"></i></label>
-                                <input type="text" id="columna" class="autocomplete" name="columna" value="${ver.columna}"> 
-                            </div>
-                            <div class="input-field col s6">                     
-                                <label for="planta">Planta <i class="fa-lg fas fa-ruler-horizontal"></i></label>
-                                <input type="number" id="planta" class="autocomplete" name="planta" value="${ver.planta}"> 
-                            </div>
-                        </div> 
-                        <button type="submit" class="waves-effect waves-light btn"><i class="fas fa-user-plus left"></i>Actualizar</button>
-                </form>
-            </c:forEach>    
+                            <div class="row">
+                                <div class="input-field col s6">                     
+                                    <select name="clase" id="clase" required="true" onchange="fillAsientos();">
+                                        <!--                                        <option value="" disabled selected >Elija clase</option>-->
+                                        <option value="Primera Clase" >Primera Clase</option>
+                                        <option value="Turista">Turista</option>
+                                        <option value="Economica">Económica</option>
+                                    </select>
+                                    <label>Clase<i class="fa-lg fas fa-id-card-alt"></i></label>
+                                </div>
+                                <div class="input-field col s6">                     
+                                    <select name="asiento" id="asiento" required="true">
+                                    </select>
+                                    <label>Asiento<i class="fa-lg fas fa-id-card-alt"></i></label> 
+                                </div>
+                            </div> 
+                            <button type="submit" class="waves-effect waves-light btn"><i class="fas fa-user-plus left"></i>Actualizar</button>
+                            </form>
+                            <script>
 
-        </div> 
+                                $(document).ready(function () {
+                                    M.AutoInit();
+
+                                    console.log("READY");
+                                    console.log("CLASE " + '${ver.clase}');
+                                    console.log("ASIENTO " + '${ver.asiento}');
+                                    $("#clase").val('${ver.clase}').change();
+                                    $('#clase').formSelect();
+                                    $('#asiento').empty();
+                                    var clase = $('#clase').val();
+                                    var html = '';
+                                    if (clase === 'Primera Clase') {
+                                        for (var i = 1; i <= 35; i++) {
+                                            html += '<option value="' + i + '">' + 'Asiento N° ' + i + '</option>';
+                                        }
+                                    } else if (clase === 'Turista') {
+                                        for (var i = 36; i <= 70; i++) {
+                                            html += '<option value="' + i + '">' + 'Asiento N° ' + i + '</option>';
+                                        }
+                                    } else if (clase === 'Economica') {
+                                        for (var i = 71; i <= 100; i++) {
+                                            html += '<option value="' + i + '">' + 'Asiento N° ' + i + '</option>';
+                                        }
+                                    }
+                                    $('#asiento').append(html);
+                                    $('#asiento').formSelect();
+                                    $("#asiento").val('${ver.asiento}').change();
+                                    $('#asiento').formSelect();
+
+                                });
+                                function fillAsientos() {
+                                    $('#asiento').empty();
+                                    var clase = $('#clase').val();
+                                    var html = '';
+                                    if (clase === 'Primera Clase') {
+                                        for (var i = 1; i <= 35; i++) {
+                                            html += '<option value="' + i + '">' + 'Asiento N° ' + i + '</option>';
+                                        }
+                                    } else if (clase === 'Turista') {
+                                        for (var i = 36; i <= 70; i++) {
+                                            html += '<option value="' + i + '">' + 'Asiento N° ' + i + '</option>';
+                                        }
+                                    } else if (clase === 'Economica') {
+                                        for (var i = 71; i <= 100; i++) {
+                                            html += '<option value="' + i + '">' + 'Asiento N° ' + i + '</option>';
+                                        }
+                                    }
+                                    $('#asiento').append(html);
+                                    $('#asiento').formSelect();
+                                }
+                            </script>
+                        </c:forEach>    
+
+                    </div> 
 
 
-    </div> 
-    <script src="../js/materialize.js" type="text/javascript"></script>
-    <script src="./js/materialize.js" type="text/javascript"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            M.AutoInit();
-        });
+                </div> 
+                <script src="../js/materialize.js" type="text/javascript"></script>
+                <script src="./js/materialize.js" type="text/javascript"></script>
+                <script>
+                                document.addEventListener('DOMContentLoaded', function () {
+                                    M.AutoInit();
+                                });
 
-    </script>
-    <script src="https://kit.fontawesome.com/cc794b3cc5.js" crossorigin="anonymous"></script>
-</body>
-</html>
+                </script>
+                <script src="https://kit.fontawesome.com/cc794b3cc5.js" crossorigin="anonymous"></script>
+                </body>
+                </html>

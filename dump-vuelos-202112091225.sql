@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: vuelos
 -- ------------------------------------------------------
--- Server version	5.5.5-10.4.20-MariaDB
+-- Server version	5.5.5-10.4.22-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -111,10 +111,9 @@ DROP TABLE IF EXISTS `embarque`;
 CREATE TABLE `embarque` (
   `tarjeta_embarque` int(10) unsigned zerofill NOT NULL AUTO_INCREMENT,
   `asiento` int(11) DEFAULT NULL,
-  `columna` varchar(3) DEFAULT NULL,
-  `planta` int(11) DEFAULT NULL,
+  `clase` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`tarjeta_embarque`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +122,7 @@ CREATE TABLE `embarque` (
 
 LOCK TABLES `embarque` WRITE;
 /*!40000 ALTER TABLE `embarque` DISABLE KEYS */;
-INSERT INTO `embarque` VALUES (0000000001,55,'55',55),(0000000002,44,'44',44),(0000000003,22,'3e',1),(0000000004,3,'2',1),(0000000005,3,'2',1),(0000000006,3,'2',1);
+INSERT INTO `embarque` VALUES (0000000001,55,'Turista'),(0000000002,44,'Turista'),(0000000007,100,'Economica');
 /*!40000 ALTER TABLE `embarque` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -177,4 +176,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-12-08 22:59:38
+-- Dump completed on 2021-12-09 12:25:30

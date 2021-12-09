@@ -6,18 +6,16 @@
 <%
     HttpSession sesion = request.getSession();
     String usuario;
-   
-    
-if(session.getAttribute("usuario")!= null){
-    usuario = session.getAttribute("usuario").toString();
-    
-}else{
-    request.getRequestDispatcher("/index.jsp").forward(request, response);
-}
 
-                    
+    if (session.getAttribute("usuario") != null) {
+        usuario = session.getAttribute("usuario").toString();
 
-    %> 
+    } else {
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
+    }
+
+
+%> 
 <html>
     <head>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -53,13 +51,13 @@ if(session.getAttribute("usuario")!= null){
             }
 
         </style>
-     <script type="text/javascript">
-    window.history.forward();
-    function noBack()
-    {
-        window.history.forward();
-    }
-</script>
+        <script type="text/javascript">
+            window.history.forward();
+            function noBack()
+            {
+            window.history.forward();
+            }
+        </script>
 
     </head>
 
@@ -69,21 +67,21 @@ if(session.getAttribute("usuario")!= null){
         <div class="container"> 
             <h3>Agregar Tarjeta</h3>
             <form action="/parcial2Vuelos/tarjeta?action=insertar" method="POST">
-                <div class="col s12 m6 l6">
+                <br>  
                     <div class="row">
                         <div class="input-field col s6">                     
-                            <label for="asiento">Asiento <i class="fa-lg fas fa-couch"></i></label>
-                            <input type="number" id="asiento" class="asiento" name="asiento" value=""> 
+                            <select name="clase" id="clase" required="true" onchange="fillAsientos();">
+                            <option value="" disabled selected >Elija clase</option>
+                            <option value="Primera Clase" >Primera Clase</option>
+                            <option value="Turista">Turista</option>
+                            <option value="Economica">Económica</option>
+                        </select>
+                        <label>Clase<i class="fa-lg fas fa-id-card-alt"></i></label>
                         </div>
-                    </div>   
-                    <div class="row">
                         <div class="input-field col s6">                     
-                            <label for="columna">Columna <i class="fa-lg fas fa-columns"></i></label>
-                            <input type="text" id="columna" class="columna" name="columna" value=""> 
-                        </div>
-                        <div class="input-field col s6">                     
-                            <label for="planta">Planta <i class="fa-lg fas fa-ruler-horizontal"></i></label>
-                            <input type="number" id="planta" class="planta" name="planta" value=""> 
+                             <select name="asiento" id="asiento" required="true">
+                            </select>
+                            <label>Asiento<i class="fa-lg fas fa-id-card-alt"></i></label> 
                         </div>
                     </div> 
 
@@ -96,7 +94,26 @@ if(session.getAttribute("usuario")!= null){
 
         </div> 
         <script src="../js/materialize.js" type="text/javascript"></script>
-
+        <script>
+        function fillAsientos() {
+        $('#asiento').empty();
+        var clase = $('#clase').val();
+        var html = '';
+        if (clase === 'Primera Clase') {
+        for (var i = 1; i <= 35; i++) {
+        html += '<option value="' + i + '">' + 'Asiento N° '+i + '</option>';
+        }} else  if (clase === 'Turista') {
+        for (var i = 36; i <= 70; i++) {
+        html += '<option value="' + i + '">' + 'Asiento N° '+i + '</option>';
+        }} else if (clase === 'Economica') {
+        for (var i = 71; i <= 100; i++) {
+        html += '<option value="' + i + '">' + 'Asiento N° '+i + '</option>';
+        }
+        }
+        $('#asiento').append(html);
+        $('#asiento').formSelect();
+        }
+        </script>
         <script src="https://kit.fontawesome.com/cc794b3cc5.js" crossorigin="anonymous"></script>
     </body>
 </html>
